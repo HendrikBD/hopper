@@ -1,0 +1,15 @@
+.navbar {
+  background: #039be5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+@media screen (max-width: 899px) {
+
+}
+
+@media screen (min-width: 900px) {
+
+}

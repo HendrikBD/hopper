@@ -47,6 +47,41 @@
   background: blue;
 }
 
+.sidebar .header {
+  height: 15%;
+  margin: 15px 20px;
+}
+
+.sidebar .header .title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.sidebar .header .desc{
+  margin: 9px 0 0 6px;
+}
+
+.sidebar .filters {
+  margin: 0 35px;
+}
+
+.sidebar .filter {
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .filter img {
+  width: 9%;
+  margin-right: 10px;
+}
+
+.sidebar .filter p {
+  font-size: 130%;
+  margin: 0;
+}
+
 
 /* Feed */
 

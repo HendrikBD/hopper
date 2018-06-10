@@ -1,5 +1,5 @@
 .navbar {
-  background: #ffad27;
+  background: #5182A6;
   position: absolute;
   top: 0;
   left: 0;
@@ -44,25 +44,33 @@
   height: 100%;
   width: 80%;
 
-  background: blue;
+  background: #78a8ca;
 }
 
 .sidebar .header {
   height: 15%;
-  margin: 15px 20px;
 }
 
 .sidebar .header .title {
+  margin: 15px 20px;
+
   font-size: 2em;
   font-weight: bold;
 }
 
 .sidebar .header .desc{
-  margin: 9px 0 0 6px;
+  margin: 9px 0 0 30px;
+}
+
+.sidebar .body {
+  height: 100%;
+  padding-top: 40px;
+
+  background: #f1f1f1;
 }
 
 .sidebar .filters {
-  margin: 0 35px;
+  margin: 0 0 0 35px;
 }
 
 .sidebar .filter {
@@ -92,7 +100,7 @@
   height: 88%;
   width: 100%;
 
-  background: #f9eedf;
+  background: #E1DEDC;
 }
 
 .card {

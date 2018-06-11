@@ -106,8 +106,12 @@
 }
 
 .sidebar .filters {
+  height: 92%;
+
   margin: 0 0 0 35px;
   padding-top: 40px;
+
+  overflow-y: scroll;
 }
 
 .sidebar .filter {
@@ -138,6 +142,8 @@
   /* width: 100%; */
 
   flex-grow: 5;
+
+  overflow-y: scroll;
 
   background: #E1DEDC;
 }

@@ -1,0 +1,26 @@
+{
+  "name": "hopper",
+  "version": "1.0.0",
+  "description": "Server to provide self caching rss feeder hopper",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HendrikBD/hopper.git"
+  },
+  "keywords": [
+    "rss"
+  ],
+  "author": "BHD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HendrikBD/hopper/issues"
+  },
+  "homepage": "https://github.com/HendrikBD/hopper#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  }
+}

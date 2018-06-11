@@ -127,9 +127,17 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 80%;
+    width: 0%;
+
+    transition: width 0.5s;
+
+    overflow-x: hidden;
 
     background: #78a8ca;
+  }
+
+  .sidebar.open {
+    width: 80%;
   }
 
   .sidebar .header {
@@ -204,6 +212,7 @@
     min-width: 200px;
     max-width: 450px;
   }
+
 
   .sidebar .header {
     display: none;

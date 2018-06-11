@@ -135,24 +135,28 @@
 }
 
 .card {
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
   margin: 10px;
+
+  border-radius: 4px;
   background: #fff;
 }
 
 .card .previewImg {
-  padding: 6px;
+  padding: 6px 15px;
 }
 
 .card .info {
   /* */
-  /* width: 100%; */
+  width: 100%;
   padding: 0 10px;
 }
 
 .card .moreInfo {
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .card .moreInfo .comments {
@@ -164,12 +168,13 @@
 }
 
 .card .moreInfo .timestamp {
-  flex-grow: 2;
+  margin-right: 15px;
+  /* flex-grow: 2; */
 
 }
 
 .card .moreInfo .rssSource {
-  flex-grow: 1;
+  /* flex-grow: 1; */
 }
 
 .card .info .rssSource > img {

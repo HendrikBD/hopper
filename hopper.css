@@ -145,6 +145,17 @@
     height: 17%;
   }
 
+  .sidebar .header .back {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    padding-top: 15px;
+  }
+
+  .sidebar .header .back > img {
+    width: 130%;
+  }
+
   .sidebar .body {
     height: 83%;
   }

@@ -48,29 +48,29 @@
 }
 
 .sidebar .header {
-  height: 15%;
+  height: 17%;
 }
 
 .sidebar .header .title {
-  margin: 15px 20px;
+  padding: 15px 20px 0 20px;
 
   font-size: 2em;
   font-weight: bold;
 }
 
 .sidebar .header .desc{
-  margin: 9px 0 0 30px;
+  padding: 15px 0 0 30px;
 }
 
 .sidebar .body {
-  height: 100%;
-  padding-top: 40px;
+  height: 83%;
 
   background: #f1f1f1;
 }
 
 .sidebar .filters {
   margin: 0 0 0 35px;
+  padding-top: 40px;
 }
 
 .sidebar .filter {

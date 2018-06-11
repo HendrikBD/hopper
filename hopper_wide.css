@@ -41,6 +41,7 @@
   top: 12%;
   left: 0;
   height: 88%;
+  width: 100%;
 }
 
 /* Sidebar */
@@ -48,6 +49,8 @@
 .sidebar {
   /* position: absolute; */
   z-index: 1;
+
+  flex-grow: 1;
 
   /* */
   /* top: 0; */
@@ -60,8 +63,8 @@
 
 
   /* width: 25%; */
-  /* min-width: 200px; */
-  /* max-width: 450px; */
+  min-width: 200px;
+  max-width: 450px;
 
   background: #78a8ca;
 }
@@ -126,6 +129,8 @@
   /* height: 88%; */
   /* width: 100%; */
 
+  flex-grow: 5;
+
   background: #E1DEDC;
 }
 
@@ -140,7 +145,8 @@
 }
 
 .card .info {
-  width: 100%;
+  /* */
+  /* width: 100%; */
   padding: 0 10px;
 }
 

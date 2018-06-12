@@ -37,6 +37,8 @@
 
   display: flex;
   align-items: center;
+
+  cursor: pointer;
 }
 
 .sidebar .filter img {
@@ -91,6 +93,10 @@
 
 .card .moreInfo .timestamp {
   margin-right: 15px;
+}
+
+.card .info .rssSource {
+  padding-left: 8px;
 }
 
 .card .info .rssSource > img {
@@ -213,7 +219,7 @@
   .sidebar {
     z-index: 1;
     flex-grow: 1;
-    min-width: 200px;
+    min-width: 250px;
     max-width: 450px;
   }
 

@@ -20,17 +20,29 @@ app.get('/', function(req, res){
   res.render('hopper');
 })
 
-app.get('/rss', function(req,res){
-  let feed = {one: "Heyo", two: "2"};
+app.get('/rss', function(req, res){
 
-  request(urls[1], function(err, res2, body) {
-    (async () => {
-      let feed = await parser.parseString(body);
+  var feeds = [];
+  let urlParse = urls.map(function(url){
+    return new Promise(function(resolve, reject){
+      request(url, function(err, response, body) {
+        (async () => {
+          let feed = await parser.parseString(body);
+          feeds.push(feed);
+          resolve();
+        })()
+      })
+    })
+  })
+
+  Promise.all(urlParse)
+    .then(function(){
       res.status(200);
       res.setHeader("Content-Type", "application/json");
-      res.end(JSON.stringify(feed));
-    })()
-  })
+      res.send(JSON.stringify(feeds));
+    }
+    )
+    .catch(function(err){console.log("Error: ", err)});
 
 })
 

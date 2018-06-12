@@ -32,7 +32,7 @@
           app.feeds = response;
           console.log(response);
           app.updateFilters();
-          app.updateFeeds();
+          app.loadAllFeeds();
         }
       } else {
       }
@@ -69,6 +69,17 @@
   }
 
   app.sortRecentFeeds = function(){
+    app.recentFeeds = [];
+    app.feeds.forEach(function(feed){
+      feed.items.forEach(function(item){
+        app.recentFeeds.push(item)
+      })
+    })
+    app.recentFeeds.sort(function(a,b){
+      let dateA = new Date(a.pubDate);
+      let dateB = new Date(b.pubDate);
+      return (dateB-dateA)
+    })
   }
 
   app.getFeeds();

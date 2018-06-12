@@ -1,8 +1,14 @@
 var express = require("express"),
-  app = express();
-
-var ejs = require('ejs'),
+  app = express(),
+  ejs = require('ejs'),
   fs = require('fs');
+
+var Parser = require('rss-parser'),
+  parser = new Parser(),
+  request = require('request');
+
+var urls = ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"];
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
@@ -17,9 +23,15 @@ app.get('/', function(req, res){
 app.get('/rss', function(req,res){
   let feed = {one: "Heyo", two: "2"};
 
-  res.status(200);
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(feed));
+  request(urls[1], function(err, res2, body) {
+    (async () => {
+      let feed = await parser.parseString(body);
+      res.status(200);
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify(feed));
+    })()
+  })
+
 })
 
 app.listen(3000, function(){

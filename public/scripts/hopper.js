@@ -2,6 +2,8 @@
 
   var app = {
     feedUrls: ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"],
+    feeds: [],
+    filters: [],
   }
 
   document.querySelector(".hamburger").addEventListener("click", function(){
@@ -13,7 +15,7 @@
   })
 
 
-  app.loadFeeds = function(){
+  app.getFeeds = function(){
 
     let path = "/rss?url=";
     app.feedUrls.forEach(function(url){
@@ -27,6 +29,7 @@
       if (request.readyState === XMLHttpRequest.DONE) {
         if(request.status === 200) {
           var response = JSON.parse(request.response);
+          app.feeds = response;
           console.log(response);
         }
       } else {
@@ -36,7 +39,8 @@
     request.send();
   }
 
-  app.loadFeeds()
+
+
+  app.getFeeds();
 
 })();
-

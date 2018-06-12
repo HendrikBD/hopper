@@ -20,14 +20,15 @@ app.get('/', function(req, res){
 app.get('/rss', function(req, res){
 
   let urls = req.query.url.split(",");
-
+  let feedsParsed = [];
   let feeds = [];
+
   let urlParse = urls.map(function(url){
     return new Promise(function(resolve, reject){
       request(url, function(err, response, body) {
         (async () => {
           let feed = await parser.parseString(body);
-          feeds.push(feed);
+          feedsParsed.push(feed);
           resolve();
         })()
       })
@@ -36,6 +37,17 @@ app.get('/rss', function(req, res){
 
   Promise.all(urlParse)
     .then(function(){
+      feedsParsed.forEach(function(feed){
+        feeds.push({
+          title: feed.title,
+          items: feed.items.sort(function(a,b){
+            let dateA = new Date(a.pubDate);
+            let dateB = new Date(b.pubDate);
+            return (dateB-dateA)
+          })
+        });
+      })
+
       res.status(200);
       res.setHeader("Content-Type", "application/json");
       res.send(JSON.stringify(feeds));

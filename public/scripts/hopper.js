@@ -4,6 +4,7 @@
     feedUrls: ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"],
     feeds: [],
     filters: [],
+    recentFeeds: [],
   }
 
   document.querySelector(".hamburger").addEventListener("click", function(){
@@ -16,7 +17,6 @@
 
 
   app.getFeeds = function(){
-
     let path = "/rss?url=";
     app.feedUrls.forEach(function(url){
       path += url;
@@ -32,6 +32,7 @@
           app.feeds = response;
           console.log(response);
           app.updateFilters();
+          app.updateFeeds();
         }
       } else {
       }
@@ -57,9 +58,17 @@
         filterHtml += '<div class="filter"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div>';
       }
     })
-
     document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
+  }
 
+  app.loadAllFeeds = function(){
+    app.sortRecentFeeds();
+  }
+
+  app.loadFilteredFeeds = function(){
+  }
+
+  app.sortRecentFeeds = function(){
   }
 
   app.getFeeds();

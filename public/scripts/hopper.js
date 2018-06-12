@@ -31,6 +31,7 @@
           var response = JSON.parse(request.response);
           app.feeds = response;
           console.log(response);
+          app.updateFilters();
         }
       } else {
       }
@@ -39,7 +40,27 @@
     request.send();
   }
 
+  app.updateFilters = function(){
+    app.feeds.forEach(function(feed){
+      app.filters.push({
+        title: feed.title,
+        img: undefined
+      });
+    })
 
+    var filterHtml = '<div class="filter home"><img src="img/home.png"><p>Home</p></div>';
+    app.filters.forEach(function(filter){
+      console.log(filter)
+      if(filter.img){
+        filterHtml += '<div class="filter"><img src="'+filter.img+'"><p>'+filter.title+'</p></div>';
+      } else {
+        filterHtml += '<div class="filter"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div>';
+      }
+    })
+
+    document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
+
+  }
 
   app.getFeeds();
 

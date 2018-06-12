@@ -68,7 +68,7 @@
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
-      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div class="spacing"></div><div class="timestamp">'+item.pubDate+'</div><div class="rssSource"><img src="img/rssFeed.png"></div></div></div></div>'
+      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+item.pubDate+'</div></div></div></div>'
     }
     console.log(feedHtml);
     document.querySelector(".content .feed").innerHTML = feedHtml;
@@ -82,6 +82,7 @@
     app.recentFeeds = [];
     app.feeds.forEach(function(feed){
       feed.items.forEach(function(item){
+        item.source = feed.title;
         app.recentFeeds.push(item)
       })
     })

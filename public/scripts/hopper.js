@@ -13,12 +13,11 @@
   request.onreadystatechange = function(){
     if (request.readyState === XMLHttpRequest.DONE) {
       if(request.status === 200) {
-        console.log(request.response);
-        // var response = JSON.parse(request.response);
-        // console.log(response);
+        var response = JSON.parse(request.response);
+        console.log(response);
       }
     } else {
-      console.log("Not yet...");
+      // console.log("Not yet...");
     }
   }
   request.open('GET', url);

@@ -15,9 +15,11 @@ app.get('/', function(req, res){
 })
 
 app.get('/rss', function(req,res){
+  let feed = {one: "Heyo", two: "2"};
+
   res.status(200);
-  console.log(req.query);
-  res.end("Testing123");
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(feed));
 })
 
 app.listen(3000, function(){

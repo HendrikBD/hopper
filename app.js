@@ -14,6 +14,12 @@ app.get('/', function(req, res){
   res.render('hopper');
 })
 
+app.get('/rss', function(req,res){
+  res.status(200);
+  console.log(req.query);
+  res.end("Testing123");
+})
+
 app.listen(3000, function(){
   console.log("Server started");
 })

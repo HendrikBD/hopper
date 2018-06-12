@@ -68,9 +68,12 @@
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
-      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+item.pubDate+'</div></div></div></div>'
+      let timeNow = new Date();
+      let pubTime = new Date(item.pubDate);
+
+      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+      // console.log()
     }
-    console.log(feedHtml);
     document.querySelector(".content .feed").innerHTML = feedHtml;
 
   }
@@ -96,3 +99,48 @@
   app.getFeeds();
 
 })();
+
+function timeDiff(currTime, timeAdded){
+  var diff = currTime-timeAdded;
+  var diffString = "";
+  if(diff<60000){
+    if(Math.floor(diff/1000)<=1){
+      diffString =  "1 second ago"
+    } else {
+      diffString =  String(Math.floor(diff/1000)) + " seconds ago"
+    }
+  } else if(diff<3600000){
+    if(Math.floor(diff/60000)<=1){
+      diffString =  "1 minute ago"
+    } else {
+      diffString =  String(Math.floor(diff/60000)) + " minutes ago"
+    }
+  } else if(diff<86400000){
+    if(Math.floor(diff/3600000)<=1){
+      diffString =  "1 hour ago"
+    } else {
+      diffString =  String(Math.floor(diff/3600000)) + " hours ago"
+    }
+  } else if(diff<2592000000){
+    if(Math.floor(diff/86400000)<=1){
+      diffString =  "1 day ago"
+    } else {
+      diffString =  String(Math.floor(diff/86400000)) + " days ago"
+    }
+  } else if(diff<31536000000){
+    if(Math.floor(diff/2592000000)<=1){
+      diffString =  "1 month ago"
+    } else if(Math.floor(diff/2592000000)>=12) {
+      diffString =  "11 months ago"
+    } else {
+      diffString =  String(Math.floor(diff/2592000000)) + " months ago"
+    }
+  } else {
+    if(Math.floor(diff/31536000000)<=1){
+      diffString =  "1 year ago"
+    } else {
+      diffString =  String(Math.floor(diff/31536000000)) + " years ago"
+    }
+  }
+  return(diffString)
+}

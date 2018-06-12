@@ -7,8 +7,6 @@ var Parser = require('rss-parser'),
   parser = new Parser(),
   request = require('request');
 
-var urls = ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"];
-
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
@@ -16,13 +14,14 @@ app.use(express.static('./public'));
 prepIndex()
 
 app.get('/', function(req, res){
-  prepIndex()
   res.render('hopper');
 })
 
 app.get('/rss', function(req, res){
 
-  var feeds = [];
+  let urls = req.query.url.split(",");
+
+  let feeds = [];
   let urlParse = urls.map(function(url){
     return new Promise(function(resolve, reject){
       request(url, function(err, response, body) {

@@ -30,7 +30,6 @@
         if(request.status === 200) {
           var response = JSON.parse(request.response);
           app.feeds = response;
-          console.log(response);
           app.updateFilters();
           app.loadAllFeeds();
         }
@@ -51,7 +50,6 @@
 
     var filterHtml = '<div class="filter home"><img src="img/home.png"><p>Home</p></div>';
     app.filters.forEach(function(filter){
-      console.log(filter)
       if(filter.img){
         filterHtml += '<div class="filter"><img src="'+filter.img+'"><p>'+filter.title+'</p></div>';
       } else {
@@ -72,7 +70,6 @@
       let pubTime = new Date(item.pubDate);
 
       feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
-      // console.log()
     }
     document.querySelector(".content .feed").innerHTML = feedHtml;
 

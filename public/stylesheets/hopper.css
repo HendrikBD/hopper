@@ -41,8 +41,30 @@
   cursor: pointer;
 }
 
+.sidebar .filter.new {
+  align-items: flex-start;
+  width: 30px;
+  overflow:hidden;
+  transition: width 0.5s;
+}
+
+.sidebar .filter.new.open {
+  width: 100%
+}
+
+.sidebar .filter.new .newFilter {
+  flex: 1;
+}
+
+.sidebar .filter.new input{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
 .sidebar .filter img {
   width: 24px;
+  height: 24px;
   margin-right: 10px;
 }
 

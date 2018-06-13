@@ -15,6 +15,10 @@
     document.querySelector(".sidebar").classList.remove("open");
   })
 
+  document.querySelector(".sidebar .filters").addEventListener('click', delegate(".filter", function(targ){
+    console.log(targ.target.parentNode.childNodes[1].innerText)
+  }))
+
 
   app.getFeeds = function(){
     let path = "/rss?url=";

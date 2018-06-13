@@ -81,7 +81,7 @@
       }
     })
 
-    filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><input type="text" placeholder="RSS URL"></input></div>';
+    filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
     document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
   }
 

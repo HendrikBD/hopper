@@ -81,11 +81,12 @@
       }
     })
 
-    filterHtml += '<div class="filter new"><img src="img/plus.png"></div>';
+    filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><input type="text" placeholder="RSS URL"></input></div>';
     document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
   }
 
   app.newFilterForm = function(){
+    document.querySelector(".filter.new").classList.toggle("open")
     console.log("Add new filter")
   }
 

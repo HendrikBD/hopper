@@ -18,15 +18,19 @@
   })
 
   document.querySelector(".sidebar .filters").addEventListener('click', delegate(".filter", function(targ){
-    app.numLinks=0;
-    app.currentFilter  = targ.target.parentNode.childNodes[1].innerText;
-    if(app.currentFilter==="Home"){
-      app.loadAllFeeds();
+    if(targ.target.parentNode.classList.contains("new")){
+      app.newFilterForm();
     } else {
-      app.loadFilteredFeed();
+      app.numLinks=0;
+      app.currentFilter  = targ.target.parentNode.childNodes[1].innerText;
+      if(app.currentFilter==="Home"){
+        app.loadAllFeeds();
+      } else {
+        app.loadFilteredFeed();
+      }
+      document.querySelector(".feed").scrollTop = 0;
+      document.querySelector(".sidebar").classList.remove("open");
     }
-    document.querySelector(".feed").scrollTop = 0;
-    document.querySelector(".sidebar").classList.remove("open");
   }))
 
   document.querySelector(".content > .feed").addEventListener("scroll", function(){
@@ -77,8 +81,12 @@
       }
     })
 
-    filterHtml += '<div class="filter"><img src="img/plus.png"></div>';
+    filterHtml += '<div class="filter new"><img src="img/plus.png"></div>';
     document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
+  }
+
+  app.newFilterForm = function(){
+    console.log("Add new filter")
   }
 
   app.loadAllFeeds = function(){

@@ -116,7 +116,23 @@
   }
 
   app.loadMore = function(){
-    console.log("Heyo")
+    if(app.currentFilter=="Home"){
+      var feedHtml = '';
+      let i;
+
+      for(i=app.numLinks; i<app.numLinks+10 && i<app.recentFeeds.length; i++){
+        let item = app.recentFeeds[i];
+        let timeNow = new Date();
+        let pubTime = new Date(item.pubDate);
+
+        feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+      }
+
+      app.numLinks=i;
+      document.querySelector(".content .feed").innerHTML += feedHtml;
+    } else{
+      console.log(app.currentFilter)
+    }
   }
 
   app.sortRecentFeeds = function(){

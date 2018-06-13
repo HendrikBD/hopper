@@ -131,7 +131,22 @@
       app.numLinks=i;
       document.querySelector(".content .feed").innerHTML += feedHtml;
     } else{
-      console.log(app.currentFilter)
+      let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
+      let i;
+
+      if(feed[0]){
+        var feedHtml = '';
+
+        for(i=app.numLinks; i<app.numLinks + 10 && i<feed[0].items.length; i++){
+          let item = feed[0].items[i];
+          let timeNow = new Date();
+          let pubTime = new Date(item.pubDate);
+
+          feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+        }
+        app.numLinks =i;
+        document.querySelector(".content .feed").innerHTML += feedHtml;
+      }
     }
   }
 

@@ -25,6 +25,12 @@
     }
   }))
 
+  document.querySelector(".content > .feed").addEventListener("scroll", function(){
+    if(this.scrollTop>=this.scrollTopMax){
+      app.loadMore();
+    }
+  })
+
 
   app.getFeeds = function(){
     let path = "/rss?url=";
@@ -100,6 +106,10 @@
       }
       document.querySelector(".content .feed").innerHTML = feedHtml;
     }
+  }
+
+  app.loadMore = function(){
+    console.log("Heyo")
   }
 
   app.sortRecentFeeds = function(){

@@ -76,6 +76,8 @@
         filterHtml += '<div class="filter"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div>';
       }
     })
+
+    filterHtml += '<div class="filter"><img src="img/plus.png"></div>';
     document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
   }
 

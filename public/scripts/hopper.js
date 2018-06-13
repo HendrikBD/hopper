@@ -6,6 +6,7 @@
     filters: [],
     recentFeeds: [],
     currentFilter: "",
+    numLinks: 0,
   }
 
   document.querySelector(".hamburger").addEventListener("click", function(){
@@ -17,6 +18,7 @@
   })
 
   document.querySelector(".sidebar .filters").addEventListener('click', delegate(".filter", function(targ){
+    app.numLinks=0;
     app.currentFilter  = targ.target.parentNode.childNodes[1].innerText;
     if(app.currentFilter==="Home"){
       app.loadAllFeeds();
@@ -77,8 +79,10 @@
 
   app.loadAllFeeds = function(){
     app.sortRecentFeeds();
+    app.currentFilter = "Home";
 
     var feedHtml = '';
+    let i;
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
@@ -87,11 +91,14 @@
 
       feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
     }
+
+    app.numLinks=i;
     document.querySelector(".content .feed").innerHTML = feedHtml;
   }
 
   app.loadFilteredFeed = function(){
     let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
+    let i;
 
     if(feed[0]){
       var feedHtml = '';

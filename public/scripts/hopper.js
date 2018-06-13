@@ -26,6 +26,7 @@
       app.loadFilteredFeed();
     }
     document.querySelector(".feed").scrollTop = 0;
+    document.querySelector(".sidebar").classList.remove("open");
   }))
 
   document.querySelector(".content > .feed").addEventListener("scroll", function(){

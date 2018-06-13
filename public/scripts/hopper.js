@@ -5,6 +5,7 @@
     feeds: [],
     filters: [],
     recentFeeds: [],
+    currentFilter = "",
   }
 
   document.querySelector(".hamburger").addEventListener("click", function(){
@@ -16,7 +17,12 @@
   })
 
   document.querySelector(".sidebar .filters").addEventListener('click', delegate(".filter", function(targ){
-    console.log(targ.target.parentNode.childNodes[1].innerText)
+    app.currentFilter  = targ.target.parentNode.childNodes[1].innerText;
+    if(app.currentFilter==="Home"){
+      app.loadAllFeeds();
+    } else {
+      app.loadFilteredFeed();
+    }
   }))
 
 
@@ -79,7 +85,7 @@
 
   }
 
-  app.loadFilteredFeeds = function(){
+  app.loadFilteredFeed = function(){
   }
 
   app.sortRecentFeeds = function(){

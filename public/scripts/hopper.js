@@ -88,13 +88,12 @@
       feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
     }
     document.querySelector(".content .feed").innerHTML = feedHtml;
-
   }
 
   app.loadFilteredFeed = function(){
     let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
 
-    if(feed){
+    if(feed[0]){
       var feedHtml = '';
 
       for(i=0; i<10 && i<feed[0].items.length; i++){

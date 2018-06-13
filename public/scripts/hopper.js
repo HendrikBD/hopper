@@ -65,6 +65,7 @@
   }
 
   app.updateFilters = function(){
+    app.filters = [];
     app.feeds.forEach(function(feed){
       app.filters.push({
         title: feed.title,
@@ -83,11 +84,12 @@
 
     filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
     document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
+
+    app.prepButtons();
   }
 
   app.newFilterForm = function(){
     document.querySelector(".filter.new").classList.toggle("open")
-    console.log("Add new filter")
   }
 
   app.loadAllFeeds = function(){
@@ -176,6 +178,16 @@
       let dateB = new Date(b.pubDate);
       return (dateB-dateA)
     })
+  }
+
+  app.prepButtons = function(){
+    document.querySelector(".newRssSubmit").addEventListener('click', function(){
+      var newFilter = document.querySelector(".newFilter input").value;
+      if(newFilter){
+        app.feedUrls.push(newFilter);
+      }
+      app.getFeeds();
+    });
   }
 
   app.getFeeds();

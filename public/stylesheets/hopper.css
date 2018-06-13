@@ -41,6 +41,11 @@
   cursor: pointer;
 }
 
+.sidebar .filter.new > div:nth-child(1) {
+  width: 24px;
+  margin-right: 10px;
+}
+
 .sidebar .filter.new {
   align-items: flex-start;
   width: 30px;
@@ -52,8 +57,16 @@
   width: 100%
 }
 
+.sidebar .filter.new.open .newFilter {
+  opacity: 1;
+  transition: opacity 0s 0s;
+}
+
 .sidebar .filter.new .newFilter {
   flex: 1;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0s 0.5s;
 }
 
 .sidebar .filter.new input{

@@ -141,3 +141,15 @@ function timeDiff(currTime, timeAdded){
   }
   return(diffString)
 }
+
+
+function delegate(selector, handler){
+  return function(event){
+    var targ = event.target;
+    do {
+      if(targ.parentNode && targ.matches(selector)) {
+        handler.call(targ, event);
+      }
+    } while ((targ=targ.parentNode) && targ != event.currentTarget);
+  }
+}

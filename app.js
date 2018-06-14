@@ -28,6 +28,8 @@ app.get('/rss', function(req, res){
       request(url, function(err, response, body) {
         (async () => {
           let feed = await parser.parseString(body);
+          feed.rssLink = url;
+
           feedsParsed.push(feed);
           resolve();
         })()
@@ -38,13 +40,15 @@ app.get('/rss', function(req, res){
   Promise.all(urlParse)
     .then(function(){
       feedsParsed.forEach(function(feed){
+
         feeds.push({
           title: feed.title,
           items: feed.items.sort(function(a,b){
             let dateA = new Date(a.pubDate);
             let dateB = new Date(b.pubDate);
             return (dateB-dateA)
-          })
+          }),
+          link: feed.rssLink
         });
       })
 

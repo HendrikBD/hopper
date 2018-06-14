@@ -39,6 +39,9 @@
   align-items: center;
 
   cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 }
 
 .sidebar .filter.new > div:nth-child(1) {

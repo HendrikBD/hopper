@@ -32,7 +32,9 @@ app.get('/rss', function(req, res){
 
           feedsParsed.push(feed);
           resolve();
-        })()
+        })().catch(function(err){
+          console.log("Error during http request: " + err)
+        })
       })
     })
   })
@@ -55,9 +57,8 @@ app.get('/rss', function(req, res){
       res.status(200);
       res.setHeader("Content-Type", "application/json");
       res.send(JSON.stringify(feeds));
-    }
-    )
-    .catch(function(err){console.log("Error: ", err)});
+    })
+    .catch(function(err){console.log("Error parsing rss feed: ", err)});
 
 })
 

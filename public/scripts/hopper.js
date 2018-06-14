@@ -1,7 +1,8 @@
 (function() {
 
   var app = {
-    feedUrls: ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"],
+    feedUrls: [],
+    reqUrls: ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"],
     feeds: [],
     filters: [],
     recentFeeds: [],
@@ -42,7 +43,7 @@
 
   app.getFeeds = function(){
     let path = "/rss?url=";
-    app.feedUrls.forEach(function(url){
+    app.reqUrls.forEach(function(url){
       path += url;
       path +=",";
     })
@@ -66,11 +67,14 @@
 
   app.updateFilters = function(){
     app.filters = [];
+    app.feedUrls = [];
+
     app.feeds.forEach(function(feed){
       app.filters.push({
         title: feed.title,
         img: undefined
       });
+      app.feedUrls.push(feed.link);
     })
 
     var filterHtml = '<div class="filter home"><img src="img/home.png"><p>Home</p></div>';
@@ -182,10 +186,13 @@
 
   app.prepButtons = function(){
     document.querySelector(".newRssSubmit").addEventListener('click', function(){
+      app.reqUrls = app.feedUrls.slice();
+
       var newFilter = document.querySelector(".newFilter input").value;
       if(newFilter){
-        app.feedUrls.push(newFilter);
+        app.reqUrls.push(newFilter);
       }
+
       app.getFeeds();
     });
   }

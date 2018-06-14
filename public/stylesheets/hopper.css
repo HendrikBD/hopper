@@ -76,11 +76,13 @@
 }
 
 .sidebar .filter.new .newRssSubmit{
-  background: #bbb;
-  border: 1px solid #333;
+  display: flex;
+  align-items: center;
   padding: 2px;
   margin-left: 5px;
+  border: 1px solid #333;
   border-radius: 3px;
+  background: #bbb;
 }
 
 .sidebar .filter img {

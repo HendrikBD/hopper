@@ -2,7 +2,7 @@
 
   var app = {
     feedUrls: [],
-    reqUrls: ["https://news.ycombinator.com/rss", "https://deepmind.com/blog/feed/basic"],
+    reqUrls: [],
     feeds: [],
     filters: [],
     recentFeeds: [],
@@ -40,6 +40,23 @@
     }
   })
 
+  app.loadFeeds = function(){
+    var request = window.indexedDB.open("rssFeedLinks", 3);
+    request.onerror = function(event) {
+      console.log("Error: " + event.target.errorCode);
+    }
+    request.onsuccess = function(event){
+      var db = event.target.result;
+      var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+      objStore.getAll().onsuccess = function(event){
+        event.target.result.forEach(function(filter){
+          app.reqUrls.push(filter.url)
+        })
+
+        app.getFeeds();
+      }
+    }
+  }
 
   app.getFeeds = function(){
     let path = "/rss?url=";
@@ -81,22 +98,20 @@
       console.log("Your browser doesn't support a stable version of IndexDB");
     } else {
       var request = window.indexedDB.open("rssFeedLinks", 3);
+
       request.onerror = function(event){
         console.log("Error: " + event.target.errorCode);
       }
+
       request.onsuccess = function(event){
         var db = event.target.result;
-
         var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
-
         objStore.delete(IDBKeyRange.lowerBound(0));
-
         app.feeds.forEach(function(feed){
           objStore.add({url:feed.link, title: feed.title});
         })
-
-
       }
+
       request.onupgradeneeded = function(event){
         console.log("new db")
         var db = event.target.result;
@@ -234,7 +249,7 @@
     });
   }
 
-  app.getFeeds();
+  app.loadFeeds();
 
 })();
 

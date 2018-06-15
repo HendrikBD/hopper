@@ -255,6 +255,12 @@
 
   app.loadFeeds();
 
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+    .register("./hopperWorker.js")
+    .then(function(){console.log("Service worker registered")})
+  }
+
 })();
 
 function timeDiff(currTime, timeAdded){

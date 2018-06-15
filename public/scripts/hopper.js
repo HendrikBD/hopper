@@ -86,7 +86,16 @@
       }
       request.onsuccess = function(event){
         var db = event.target.result;
-        console.log(event);
+
+        var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+
+        objStore.delete(IDBKeyRange.lowerBound(0));
+
+        app.feeds.forEach(function(feed){
+          objStore.add({url:feed.link, title: feed.title});
+        })
+
+
       }
       request.onupgradeneeded = function(event){
         console.log("new db")
@@ -101,10 +110,8 @@
           app.feeds.forEach(function(feed){
             feedObjStore.add({url: feed.link, title: feed.title})
           });
-          console.log("Object stored")
         }
       }
-      console.log("DB opened!")
     }
 
     var filterHtml = '<div class="filter home"><img src="img/home.png"><p>Home</p></div>';

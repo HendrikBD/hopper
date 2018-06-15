@@ -77,6 +77,22 @@
       app.feedUrls.push(feed.link);
     })
 
+    if(!window.indexedDB){
+      console.log("Your browser doesn't support a stable version of IndexDB");
+    } else {
+      var request = window.indexedDB.open("rssFeedLinks", 3);
+      request.onerror = function(event){
+        console.log("Error: " + event.target.errorCode);
+      }
+      request.onsuccess = function(event){
+        var db = event.target.result;
+        console.log(event);
+      }
+      request.onupgradeneeded = function(event){
+      }
+      console.log("DB opened!")
+    }
+
     var filterHtml = '<div class="filter home"><img src="img/home.png"><p>Home</p></div>';
     app.filters.forEach(function(filter){
       if(filter.img){

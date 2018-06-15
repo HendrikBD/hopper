@@ -18,7 +18,6 @@ app.get('/', function(req, res){
 })
 
 app.get('/rss', function(req, res){
-
   let urls = req.query.url.split(",");
   let feedsParsed = [];
   let feeds = [];
@@ -27,11 +26,16 @@ app.get('/rss', function(req, res){
     return new Promise(function(resolve, reject){
       request(url, function(err, response, body) {
         (async () => {
-          let feed = await parser.parseString(body);
-          feed.rssLink = url;
+          if(body) {
+            let feed = await parser.parseString(body);
+            feed.rssLink = url;
+            consol.log(feed)
 
-          feedsParsed.push(feed);
-          resolve();
+            feedsParsed.push(feed);
+            resolve();
+          } else {
+            reject("Invalid feed url")
+          }
         })().catch(function(err){
           console.log("Error during http request: " + err)
           console.log("Sending back No Content")

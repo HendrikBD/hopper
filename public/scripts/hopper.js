@@ -89,6 +89,20 @@
         console.log(event);
       }
       request.onupgradeneeded = function(event){
+        console.log("new db")
+        var db = event.target.result;
+        var objStore = db.createObjectStore("feeds", {autoIncrement: true});
+
+        objStore.createIndex("url", "url", {unique: true});
+        objStore.createIndex("title", "title", {unique: false});
+
+        objStore.transaction.oncomplete = function(event) {
+          var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+          app.feeds.forEach(function(feed){
+            feedObjStore.add({url: feed.link, title: feed.title})
+          });
+          console.log("Object stored")
+        }
       }
       console.log("DB opened!")
     }

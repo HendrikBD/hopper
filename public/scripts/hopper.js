@@ -18,21 +18,6 @@
     document.querySelector(".sidebar").classList.remove("open");
   })
 
-  document.querySelector(".sidebar .filters").addEventListener('click', delegate(".filter", function(targ){
-    if(targ.target.parentNode.classList.contains("new")){
-      app.newFilterForm();
-    } else {
-      app.numLinks=0;
-      app.currentFilter  = targ.target.parentNode.childNodes[1].innerText;
-      if(app.currentFilter==="Home"){
-        app.loadAllFeeds();
-      } else {
-        app.loadFilteredFeed();
-      }
-      document.querySelector(".feed").scrollTop = 0;
-      document.querySelector(".sidebar").classList.remove("open");
-    }
-  }))
 
   document.querySelector(".content > .feed").addEventListener("scroll", function(){
     if((this.scrollTop+this.offsetHeight)>=this.scrollHeight){
@@ -129,12 +114,12 @@
       }
     }
 
-    var filterHtml = '<div class="filter home"><img src="img/home.png"><p>Home</p></div>';
+    var filterHtml = '<div class="filter btn home"><img src="img/home.png"><p>Home</p></div>';
     app.filters.forEach(function(filter){
       if(filter.img){
-        filterHtml += '<div class="filter"><img src="'+filter.img+'"><p>'+filter.title+'</p></div>';
+        filterHtml += '<div class="filter btn"><img src="'+filter.img+'"><p>'+filter.title+'</p></div>';
       } else {
-        filterHtml += '<div class="filter"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div>';
+        filterHtml += '<div class="filter btn"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div>';
       }
     })
 
@@ -245,8 +230,27 @@
         app.reqUrls.push(newFilter);
       }
 
-      app.getFeeds();
     });
+
+    document.querySelectorAll(".filter.btn").forEach(function(element){
+      element.addEventListener("click", function(){
+        app.numLinks=0;
+        app.currentFilter = this.childNodes[1].innerText;
+        if(app.currentFilter==="Home"){
+          app.loadAllFeeds();
+        } else {
+          app.loadFilteredFeed();
+        }
+        document.querySelector(".feed").scrollTop = 0;
+        document.querySelector(".sidebar").classList.remove("open");
+      })
+    })
+
+    document.querySelector(".filter.new img").addEventListener("click", function(){
+      app.newFilterForm();
+    })
+
+    app.getFeeds();
   }
 
   app.loadFeeds();

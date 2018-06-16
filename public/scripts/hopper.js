@@ -78,6 +78,10 @@
           app.feeds = response;
           app.updateFilters();
           app.loadAllFeeds();
+        } else if(request.status === 204) {
+          app.feeds = [];
+          app.prepButtons();
+          app.loadAllFeeds();
         }
       } else {
       }

@@ -37,6 +37,9 @@
         event.target.result.forEach(function(filter){
           app.reqUrls.push(filter.url)
         })
+        app.feedUrls = app.reqUrls.slice();
+
+        app.getFeeds();
       }
 
     }
@@ -54,9 +57,9 @@
           feedObjStore.add({url: feed.link, title: feed.title})
         });
       }
+      app.getFeeds();
     }
 
-    app.getFeeds();
   }
 
   app.getFeeds = function(){

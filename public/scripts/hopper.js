@@ -167,7 +167,7 @@
     app.sortRecentFeeds();
     app.currentFilter = "Home";
 
-    var feedHtml = '<div class="loading"></div>';
+    var feedHtml = '';
     let i;
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
@@ -284,9 +284,13 @@
     document.querySelector(".filter.new img").addEventListener("click", function(){
       app.newFilterForm();
     })
-
   }
 
+  app.loadingIcon = function(){
+    document.querySelector(".feed").innerHTML = "<div class='loading'></div>" + document.querySelector(".feed").innerHTML;
+  }
+
+  app.loadingIcon();
   app.loadFeeds();
 
   if ('serviceWorker' in navigator) {

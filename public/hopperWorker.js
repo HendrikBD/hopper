@@ -1,4 +1,5 @@
-var cacheName = "hopperCache";
+var cacheName = "hopperCache_0.07";
+var dataCacheName = "feedData";
 var filesToCache = [
   '/',
   '/hopper.html',
@@ -41,6 +42,13 @@ self.addEventListener('fetch', function(e){
   var reqUrl = e.request.url.split("?")[0];
   console.log("[ServiceWorker] Fetching: ", reqUrl);
   if(reqUrl.indexOf(dataUrl) > -1){
-    console.log("Data requested!");
+    e.respondWith(
+      caches.open(dataCacheName).then(function(cache) {
+        return fetch(e.request).then(function(response){
+          cache.put(e.request.url, response.clone());
+          return response;
+        })
+      })
+    )
   }
 })

@@ -264,7 +264,7 @@
       if(newFilter){
         app.reqUrls.push(newFilter);
       }
-
+      app.getFeeds();
     });
 
     document.querySelectorAll(".filter.btn").forEach(function(element){
@@ -285,7 +285,6 @@
       app.newFilterForm();
     })
 
-    app.getFeeds();
   }
 
   app.loadFeeds();

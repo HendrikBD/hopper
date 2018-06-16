@@ -167,7 +167,7 @@
     app.sortRecentFeeds();
     app.currentFilter = "Home";
 
-    var feedHtml = '';
+    var feedHtml = '<div class="loading"></div>';
     let i;
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){

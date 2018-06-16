@@ -110,6 +110,26 @@
   background: #E1DEDC;
 }
 
+.loading {
+  width: 24px;
+  height: 24px;
+
+  border: 7px solid #bbb;
+  border-right-color: transparent;
+  border-radius: 50%;
+
+  background: #fff;
+  margin: 15px auto;
+
+  animation: spin 1s linear infinite;
+}
+@keyframes spin
+{
+  from {transform: rotate(0deg); opacity: 0.4;}
+  50%  {transform: rotate(180deg); opacity: 1.0; }
+  to   {transform: rotate(360deg); opacity: 0.4}
+}
+
 .card {
   display: flex;
   align-items: center;

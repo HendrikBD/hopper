@@ -29,7 +29,6 @@ app.get('/rss', function(req, res){
           if(body) {
             let feed = await parser.parseString(body);
             feed.rssLink = url;
-            consol.log(feed)
 
             feedsParsed.push(feed);
             resolve();

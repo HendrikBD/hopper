@@ -45,7 +45,7 @@
 
     }
     request.onupgradeneeded = function(event){
-      console.log("new db")
+      console.log("New/Updated IndexedDB ")
       var db = event.target.result;
       var objStore = db.createObjectStore("feeds", {autoIncrement: true});
 
@@ -126,7 +126,7 @@
       }
 
       request.onupgradeneeded = function(event){
-        console.log("new db")
+        console.log("New/Updated DB")
         var db = event.target.result;
         var objStore = db.createObjectStore("feeds", {autoIncrement: true});
 

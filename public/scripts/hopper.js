@@ -25,6 +25,7 @@
     }
   })
 
+  // On load, check indexedDB for previously saved rss links, if exist save them
   app.loadFeeds = function(){
     var request = window.indexedDB.open("rssFeedLinks", 3);
     request.onerror = function(event) {
@@ -62,6 +63,9 @@
 
   }
 
+  // Request feeds from server based on reqUrls property. Server will return the feed 
+  // info, but if the request is empty or the urls are bad, an no content response will 
+  // be returned.
   app.getFeeds = function(){
     let path = "/rss?url=";
     app.reqUrls.forEach(function(url){
@@ -90,7 +94,8 @@
     request.send();
   }
 
-  app.updateFilters = function(){
+  // Parse feeds for filters & links, save them to indexdb and add HTML to create the filters
+  app.updateFilters = function() {
     app.filters = [];
     app.feedUrls = [];
 
@@ -152,10 +157,12 @@
     app.prepButtons();
   }
 
+  // Activate new filter form
   app.newFilterForm = function(){
     document.querySelector(".filter.new").classList.toggle("open")
   }
 
+  // Load feed data from all sources and display via HTML
   app.loadAllFeeds = function(){
     app.sortRecentFeeds();
     app.currentFilter = "Home";
@@ -175,6 +182,7 @@
     document.querySelector(".content .feed").innerHTML = feedHtml;
   }
 
+  // Load feed data from a single source and display via HTML
   app.loadFilteredFeed = function(){
     let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
     let i;
@@ -194,6 +202,7 @@
     }
   }
 
+  // Add more feed data to bottom of feed
   app.loadMore = function(){
     if(app.currentFilter=="Home"){
       var feedHtml = '';
@@ -229,6 +238,7 @@
     }
   }
 
+  // Go through all feeds and sort them based on time submitted
   app.sortRecentFeeds = function(){
     app.recentFeeds = [];
     app.feeds.forEach(function(feed){
@@ -244,6 +254,8 @@
     })
   }
 
+  // Prep menu, back and new filter buttons. Menu & back are for narrow screen 
+  // sidebar control. New filter button will send to app to get feeds
   app.prepButtons = function(){
     document.querySelector(".newRssSubmit").addEventListener('click', function(){
       app.reqUrls = app.feedUrls.slice();

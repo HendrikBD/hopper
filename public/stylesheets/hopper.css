@@ -26,7 +26,7 @@ body {
 }
 
 .refresh > img {
-  width: 40px;
+  width: 35px;
 }
 
 /* Sidebar */
@@ -42,7 +42,7 @@ body {
   margin: 0 0 0 35px;
   padding: 40px 10px 0 0;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .sidebar .filter {
@@ -113,13 +113,14 @@ body {
 
 .sidebar .filter p {
   margin: 0;
+  font-size: 110%;
 }
 
 
 /* Feed */
 
 .feed {
-  overflow-y: scroll;
+  overflow-y: auto;
   background: #E1DEDC;
 }
 

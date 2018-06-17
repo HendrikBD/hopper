@@ -3,7 +3,7 @@ body {
 }
 
 .navbar {
-  background: #5182A6;
+  background: #55B572;
   position: absolute;
   top: 0;
   left: 0;
@@ -127,7 +127,7 @@ body {
   width: 24px;
   height: 24px;
 
-  border: 7px solid #bbb;
+  border: 7px solid #55B572;
   border-right-color: transparent;
   border-radius: 50%;
 
@@ -251,7 +251,7 @@ body {
 
     overflow-x: hidden;
 
-    background: #78a8ca;
+    background: #349C54;
   }
 
   .sidebar.open {

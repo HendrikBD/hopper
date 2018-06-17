@@ -140,7 +140,7 @@
   to   {transform: rotate(360deg); opacity: 0.4}
 }
 
-.feed > .card:nth-child(1){
+.feed > .card:nth-child(1).display{
   animation: showSlowly 0.7s ease-in 0s 1 forwards, slideUp 0.7s ease-out 0s 1 forwards;
 }
 
@@ -163,6 +163,9 @@
 
   border-radius: 4px;
   background: #fff;
+}
+
+.card.display {
   animation: showSlowly 0.7s ease-in 0s 1 forwards;
 }
 

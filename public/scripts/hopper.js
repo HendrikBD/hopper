@@ -196,6 +196,7 @@
 
     app.numLinks=i;
     document.querySelector(".content .feed").innerHTML = feedHtml;
+    app.feedDisplayAnimation();
   }
 
   // Load feed data from a single source and display via HTML
@@ -215,6 +216,7 @@
       }
       app.numLinks =i;
       document.querySelector(".content .feed").innerHTML = feedHtml;
+      app.feedDisplayAnimation()
     }
   }
 
@@ -252,6 +254,19 @@
         document.querySelector(".content .feed").innerHTML += feedHtml;
       }
     }
+  }
+
+  app.feedDisplayAnimation = function(){
+    console.log("display!")
+    document.querySelectorAll(".content .feed .card").forEach(function(ele){
+      ele.classList.add("display");
+    })
+
+    setTimeout(function(){
+      document.querySelectorAll(".content .feed .card").forEach(function(element){
+        element.classList.remove("display");
+      })
+    },700)
   }
 
   // Go through all feeds and sort them based on time submitted

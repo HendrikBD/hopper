@@ -92,6 +92,17 @@
     }
     request.open('GET', path);
     request.send();
+    request.onerror = function(err){
+      caches.match("/rss").then(function(response){
+        if(response){
+          response.json().then(function(json){
+            app.feeds = json;
+            app.updateFilters();
+            app.loadAllFeeds();
+          })
+        }
+      })
+    }
   }
 
   // Parse feeds for filters & links, save them to indexdb and add HTML to create the filters

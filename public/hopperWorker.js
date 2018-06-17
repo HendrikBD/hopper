@@ -55,11 +55,6 @@ self.addEventListener('fetch', function(e){
     })
 
     e.respondWith(
-      caches.open(dataCacheName).then(function(cache) {
-        return fetch(e.request).then(function(response){
-          cache.put(e.request.url, response.clone());
-          return response;
-        })
       })
     )
   }

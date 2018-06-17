@@ -6,7 +6,7 @@
     feeds: [],
     filters: [],
     recentFeeds: [],
-    currentFilter: "",
+    currentFilter: "Home",
     numLinks: 0,
   }
 
@@ -285,11 +285,14 @@
     document.querySelectorAll(".filter.btn").forEach(function(element){
       element.addEventListener("click", function(){
         app.numLinks=0;
-        app.currentFilter = this.childNodes[1].innerText;
-        if(app.currentFilter==="Home"){
-          app.loadAllFeeds();
-        } else {
-          app.loadFilteredFeed();
+        if(app.currentFilter !== this.childNodes[1].innerText){
+          app.currentFilter = this.childNodes[1].innerText;
+
+          if(app.currentFilter==="Home"){
+            app.loadAllFeeds();
+          } else {
+            app.loadFilteredFeed();
+          }
         }
         document.querySelector(".feed").scrollTop = 0;
         document.querySelector(".sidebar").classList.remove("open");

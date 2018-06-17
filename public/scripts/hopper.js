@@ -19,6 +19,7 @@
   })
 
   document.querySelector(".navbar .refresh").addEventListener("click", function(){
+    document.querySelector(".feed").scrollTop = 0;
     app.loadingIcon();
     app.loadFeeds();
   })
@@ -258,7 +259,6 @@
   }
 
   app.feedDisplayAnimation = function(){
-    console.log("display!")
     document.querySelectorAll(".content .feed .card").forEach(function(ele){
       ele.classList.add("display");
     })

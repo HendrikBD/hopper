@@ -8,7 +8,8 @@ var filesToCache = [
   '/img/backArrow.svg',
   '/img/home.png',
   '/img/plus.png',
-  '/img/rssFeed.png'
+  '/img/rssFeed.png',
+  '/img/refresh.png'
 ];
 
 self.addEventListener('install', function(e){

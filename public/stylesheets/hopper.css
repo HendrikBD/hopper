@@ -16,6 +16,14 @@
   color: black;
 }
 
+.refresh {
+  margin-right: 30px;
+}
+
+.refresh > img {
+  width: 40px;
+}
+
 /* Sidebar */
 
 
@@ -177,8 +185,8 @@
   flex-grow: 2;
 }
 
-.card .moreInfo .spacing {
-  flex-grow: 12;
+.spacing {
+  flex: 1;
 }
 
 .card .moreInfo .timestamp {

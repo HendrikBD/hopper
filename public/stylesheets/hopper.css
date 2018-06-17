@@ -18,6 +18,7 @@
 
 .refresh {
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .refresh > img {

@@ -18,6 +18,10 @@
     document.querySelector(".sidebar").classList.remove("open");
   })
 
+  document.querySelector(".navbar .refresh").addEventListener("click", function(){
+    app.loadFeeds();
+  })
+
 
   document.querySelector(".content > .feed").addEventListener("scroll", function(){
     if((this.scrollTop+this.offsetHeight)>=this.scrollHeight){

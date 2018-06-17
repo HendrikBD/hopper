@@ -31,6 +31,7 @@
 
   // On load, check indexedDB for previously saved rss links, if exist save them
   app.loadFeeds = function(){
+    app.reqUrls = [];
     var request = window.indexedDB.open("rssFeedLinks", 3);
     request.onerror = function(event) {
       console.log("Error: " + event.target.errorCode);

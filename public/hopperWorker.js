@@ -54,7 +54,10 @@ self.addEventListener('fetch', function(e){
         console.log("Error: ", error)
     })
 
+  } else {
     e.respondWith(
+      caches.match(e.request).then(function(response){
+        return response || fetch(e.reqeuest);
       })
     )
   }

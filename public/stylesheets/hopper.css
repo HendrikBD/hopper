@@ -145,18 +145,18 @@
 }
 
 .feed > .card:nth-child(1).display{
-  animation: showSlowly 0.7s ease-in 0s 1 forwards, slideUp 0.7s ease-out 0s 1 forwards;
+  animation: showSlowly 0.5s ease-in 0s 1 forwards, slideUp 0.5s ease-out 0s 1 forwards;
 }
 
 @keyframes slideUp
 {
-  from {margin-top: 100vh}
+  from {margin-top: 40vh}
   to   {margin-top: 10px}
 }
 
 @keyframes showSlowly
 {
-  from {opacity: 0}
+  from {opacity: 0.1}
   to {opacity: 1}
 }
 
@@ -170,7 +170,7 @@
 }
 
 .card.display {
-  animation: showSlowly 0.7s ease-in 0s 1 forwards;
+  animation: showSlowly 0.5s ease-in 0s 1 forwards;
 }
 
 

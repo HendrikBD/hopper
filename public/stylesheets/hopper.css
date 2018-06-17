@@ -138,6 +138,10 @@ body {
   animation: spin 1s linear infinite, slideDownLoading 0.2s linear 0s 1 forwards;
 }
 
+.loading.hide {
+  animation: slideUpLoading 0.2s linear 0s 1 forwards;
+}
+
 @keyframes spin {
   from {transform: rotate(0deg); opacity: 0.4;}
   50%  {transform: rotate(180deg); opacity: 1.0; }
@@ -147,6 +151,11 @@ body {
 @keyframes slideDownLoading {
   from {margin-top: -40px;}
   to   {margin-top: 15px;}
+}
+
+@keyframes slideUpLoading {
+  from {margin-top: 15px;}
+  to   {margin-top: -40px;}
 }
 
 .feed > .card:nth-child(1).display{

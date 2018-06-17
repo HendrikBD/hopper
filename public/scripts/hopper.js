@@ -22,6 +22,9 @@
     document.querySelector(".feed").scrollTop = 0;
     app.loadingIcon();
     app.loadFeeds();
+    setTimeout(function(){
+      document.querySelector(".loading").classList.add("hide")
+    }, 7000)
   })
 
 

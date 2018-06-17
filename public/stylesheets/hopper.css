@@ -130,14 +130,18 @@
   background: #fff;
   margin: 15px auto;
 
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite, slideDownLoading 0.2s linear 0s 1 forwards;
 }
 
-@keyframes spin
-{
+@keyframes spin {
   from {transform: rotate(0deg); opacity: 0.4;}
   50%  {transform: rotate(180deg); opacity: 1.0; }
   to   {transform: rotate(360deg); opacity: 0.4}
+}
+
+@keyframes slideDownLoading {
+  from {margin-top: -40px;}
+  to   {margin-top: 15px;}
 }
 
 .feed > .card:nth-child(1).display{

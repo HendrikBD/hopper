@@ -19,6 +19,7 @@
   })
 
   document.querySelector(".navbar .refresh").addEventListener("click", function(){
+    app.loadingIcon();
     app.loadFeeds();
   })
 

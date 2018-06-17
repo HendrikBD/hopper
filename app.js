@@ -37,8 +37,8 @@ app.get('/rss', function(req, res){
           }
         })().catch(function(err){
           console.log("Error during http request: " + err)
-          console.log("Sending back No Content")
-          res.status(204).end();
+          console.log("Skipping url: ", url);
+          resolve();
         })
       })
     })

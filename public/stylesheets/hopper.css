@@ -123,11 +123,24 @@
 
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin
 {
   from {transform: rotate(0deg); opacity: 0.4;}
   50%  {transform: rotate(180deg); opacity: 1.0; }
   to   {transform: rotate(360deg); opacity: 0.4}
+}
+
+.feed > .card:nth-child(1){
+  margin-top: 100vh;
+  animation: slideUp 0.7s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideUp
+{
+  from {margin-top: 100vh}
+  to   {margin-top: 10px}
 }
 
 .card {

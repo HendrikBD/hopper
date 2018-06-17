@@ -275,6 +275,10 @@
       if(newFilter){
         app.reqUrls.push(newFilter);
       }
+      setTimeout(function(){
+        document.querySelector(".newFilter input").value = "";
+      },500);
+      document.querySelector(".filter.new").classList.remove("open");
       app.getFeeds();
     });
 

@@ -1,3 +1,7 @@
+body {
+  font-family: Times New Roman;
+}
+
 .navbar {
   background: #5182A6;
   position: absolute;
@@ -11,7 +15,7 @@
 
 .brand {
   float: left;
-  margin-left: 1.5%;
+  margin-left: 3%;
   font-weight: bold;
   color: black;
 }

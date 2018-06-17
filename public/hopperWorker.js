@@ -42,6 +42,18 @@ self.addEventListener('fetch', function(e){
   var reqUrl = e.request.url.split("?")[0];
   console.log("[ServiceWorker] Fetching: ", reqUrl);
   if(reqUrl.indexOf(dataUrl) > -1){
+
+    fetch(e.request).then(function(response){
+      if(response.ok){
+        caches.open(dataCacheName).then(function(cache){
+          cache.put("/rss", response.clone());
+        })
+        return response;
+      }
+    }).catch(function(error){
+        console.log("Error: ", error)
+    })
+
     e.respondWith(
       caches.open(dataCacheName).then(function(cache) {
         return fetch(e.request).then(function(response){

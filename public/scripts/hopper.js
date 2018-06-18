@@ -5,7 +5,6 @@
     reqUrls: [],
     feeds: [],
     filters: [],
-    edit: false,
     recentFeeds: [],
     currentFilter: "Home",
     numLinks: 0,
@@ -206,7 +205,7 @@
       let timeNow = new Date();
       let pubTime = new Date(item.pubDate);
 
-      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
     }
 
     app.numLinks=i;
@@ -227,7 +226,7 @@
         let timeNow = new Date();
         let pubTime = new Date(item.pubDate);
 
-        feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+        feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
       }
       app.numLinks =i;
       document.querySelector(".content .feed").innerHTML = feedHtml;
@@ -353,7 +352,6 @@
   }
 
   app.editFeeds = function(){
-    app.edit = !app.edit;
     document.querySelector(".sidebar .edit").classList.toggle("clicked")
     document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
       ele.classList.toggle("on");

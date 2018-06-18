@@ -319,6 +319,7 @@
         document.querySelector(".newFilter input").value = "";
       },500);
       document.querySelector(".filter.new").classList.remove("open");
+      app.loadingIcon();
       app.getFeeds();
     })
 
@@ -346,7 +347,7 @@
 
     document.querySelectorAll(".filter .delete img").forEach(function(ele){
       ele.addEventListener("click", function(){
-        app.deleteFilter(this.parentNode.parentNode.childNodes[0].childNodes[1].innerText)
+        app.deleteFeed(this.parentNode.parentNode.childNodes[0].childNodes[1].innerText)
       })
     })
   }
@@ -358,7 +359,7 @@
     })
   }
 
-  app.deleteFilter = function(filter) {
+  app.deleteFeed = function(filter) {
 
     if(!window.indexedDB){
       console.log("Your browser doesn't support a stable version of IndexDB");
@@ -398,6 +399,7 @@
         }
       }
     }
+    app.loadingIcon();
     app.loadFeeds();
   }
 

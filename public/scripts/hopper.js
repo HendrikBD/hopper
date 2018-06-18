@@ -345,9 +345,19 @@
       app.newFilterForm();
     })
 
+    document.querySelectorAll(".filter .delete img").forEach(function(ele){
+      ele.addEventListener("click", function(){
+        console.log("delete");
+      })
+    })
+  }
+
   app.editFeeds = function(){
     app.edit = !app.edit;
     document.querySelector(".sidebar .edit").classList.toggle("clicked")
+    document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
+      ele.classList.toggle("on");
+    })
   }
 
   app.loadingIcon = function(){

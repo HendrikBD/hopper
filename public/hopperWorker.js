@@ -1,4 +1,4 @@
-var cacheName = "hopperCache_0.07";
+var cacheName = "hopperCache_0.09";
 var dataCacheName = "feedData";
 var filesToCache = [
   '/',

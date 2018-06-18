@@ -373,7 +373,7 @@ body {
   }
 
   .feed {
-    flex-grow: 5;
+    flex: 4;
   }
 
 }

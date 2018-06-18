@@ -16,6 +16,7 @@
   
   document.querySelector(".sidebar .header .back").addEventListener("click", function(){
     document.querySelector(".sidebar").classList.remove("open");
+    document.querySelector(".sidebar .filter.new").classList.remove("open");
   })
 
   document.querySelector(".navbar .refresh").addEventListener("click", function(){
@@ -33,6 +34,7 @@
       app.loadMore();
     }
   })
+
 
   // On load, check indexedDB for previously saved rss links, if exist save them
   app.loadFeeds = function(){

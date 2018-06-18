@@ -10,6 +10,7 @@ var filesToCache = [
   '/img/plus.png',
   '/img/rssFeed.png',
   '/img/refresh.png',
+  '/img/delete.png',
   '/img/edit.png'
 ];
 

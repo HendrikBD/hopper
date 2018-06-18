@@ -69,7 +69,7 @@
       var objStore = db.createObjectStore("feeds", {autoIncrement: true});
 
       objStore.createIndex("url", "url", {unique: true});
-      objStore.createIndex("title", "title", {unique: false});
+      objStore.createIndex("title", "title", {unique: true});
 
       objStore.transaction.oncomplete = function(event) {
         var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
@@ -161,7 +161,7 @@
         var objStore = db.createObjectStore("feeds", {autoIncrement: true});
 
         objStore.createIndex("url", "url", {unique: true});
-        objStore.createIndex("title", "title", {unique: false});
+        objStore.createIndex("title", "title", {unique: true});
 
         objStore.transaction.oncomplete = function(event) {
           var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");

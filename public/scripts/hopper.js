@@ -5,6 +5,7 @@
     reqUrls: [],
     feeds: [],
     filters: [],
+    edit: false,
     recentFeeds: [],
     currentFilter: "Home",
     numLinks: 0,
@@ -29,6 +30,10 @@
         element.classList.add("hide");
       }
     }, 7000)
+  })
+
+  document.querySelector(".sidebar .edit > img").addEventListener("click", function(){
+    app.editFeeds();
   })
 
 
@@ -339,6 +344,10 @@
     document.querySelector(".filter.new img").addEventListener("click", function(){
       app.newFilterForm();
     })
+
+  app.editFeeds = function(){
+    app.edit = !app.edit;
+    document.querySelector(".sidebar .edit").classList.toggle("clicked")
   }
 
   app.loadingIcon = function(){

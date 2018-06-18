@@ -173,12 +173,12 @@
       }
     }
 
-    var filterHtml = '<div class="filter btn home"><img src="img/home.png"><p>Home</p></div>';
+    var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
     app.filters.forEach(function(filter){
       if(filter.img){
         filterHtml += '<div class="filter btn"><img src="'+filter.img+'"><p>'+filter.title+'</p></div>';
       } else {
-        filterHtml += '<div class="filter btn"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div>';
+        filterHtml += '<div class="filter"><div class="btn"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
       }
     })
 
@@ -324,7 +324,7 @@
     })
 
 
-    document.querySelectorAll(".filter.btn").forEach(function(element){
+    document.querySelectorAll(".filter .btn").forEach(function(element){
       element.addEventListener("click", function(){
         app.numLinks=0;
         if(app.currentFilter !== this.childNodes[1].innerText){

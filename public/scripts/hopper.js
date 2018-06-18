@@ -24,7 +24,10 @@
     app.loadingIcon();
     app.loadFeeds();
     setTimeout(function(){
-      document.querySelector(".loading").classList.add("hide")
+      let element = document.querySelector(".loading")
+      if(element){
+        element.classList.add("hide");
+      }
     }, 7000)
   })
 

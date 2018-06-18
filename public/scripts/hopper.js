@@ -292,7 +292,14 @@
   // Prep menu, back and new filter buttons. Menu & back are for narrow screen 
   // sidebar control. New filter button will send to app to get feeds
   app.prepButtons = function(){
-    document.querySelector(".newRssSubmit").addEventListener('click', function(){
+
+    document.querySelector(".newRssSubmit").addEventListener("mousedown", function(){
+      this.classList.add("clicked");
+    })
+
+    document.querySelector(".newRssSubmit").addEventListener("mouseup", function(){
+      this.classList.remove("clicked");
+
       app.reqUrls = app.feedUrls.slice();
 
       var newFilter = document.querySelector(".newFilter input").value;
@@ -304,7 +311,8 @@
       },500);
       document.querySelector(".filter.new").classList.remove("open");
       app.getFeeds();
-    });
+    })
+
 
     document.querySelectorAll(".filter.btn").forEach(function(element){
       element.addEventListener("click", function(){

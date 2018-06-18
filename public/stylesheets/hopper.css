@@ -118,6 +118,7 @@ body {
 .sidebar .filter p {
   margin: 0;
   font-size: 110%;
+  white-space: nowrap;
 }
 
 
@@ -301,6 +302,7 @@ body {
   .sidebar .header .desc{
     padding: 15px 0 0 30px;
     font-size: 2.5vh;
+    width: 100%;
   }
 
   .sidebar .header .back {

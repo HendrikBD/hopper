@@ -122,6 +122,31 @@ body {
 }
 
 
+.sidebar .edit > img {
+  width: 20px;
+  padding: 4px;
+  border-radius: 4px;
+  background: #4B84C4;
+
+  float: right;
+
+  position: relative;
+  right: 3vh;
+  bottom: 3vh;
+
+  box-shadow: 0px 0px 3px #555;
+
+  transition: 0.1s;
+
+  cursor: pointer;
+}
+
+.sidebar .edit.clicked > img {
+  background: #3B5D86;
+  box-shadow: 0px 0px 1px #555;
+}
+
+
 /* Feed */
 
 .feed {

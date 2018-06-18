@@ -346,7 +346,7 @@
 
     document.querySelectorAll(".filter .delete img").forEach(function(ele){
       ele.addEventListener("click", function(){
-        console.log("delete");
+        app.deleteFilter(this.parentNode.parentNode.childNodes[0].childNodes[1].innerText)
       })
     })
   }
@@ -356,6 +356,10 @@
     document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
       ele.classList.toggle("on");
     })
+  }
+
+  app.deleteFilter = function(filter) {
+
   }
 
   app.loadingIcon = function(){

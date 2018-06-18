@@ -360,6 +360,45 @@
 
   app.deleteFilter = function(filter) {
 
+    if(!window.indexedDB){
+      console.log("Your browser doesn't support a stable version of IndexDB");
+    } else {
+      var request = window.indexedDB.open("rssFeedLinks", 3);
+
+      request.onerror = function(event){
+        console.log("Error: " + event.target.errorCode);
+      }
+
+      request.onsuccess = function(event){
+        var db = event.target.result;
+        var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+        objStore.delete(IDBKeyRange.lowerBound(0));
+        app.feeds.forEach(function(feed){
+          if(feed.title !== filter){
+            objStore.add({url:feed.link, title: feed.title});
+          }
+        })
+      }
+
+      request.onupgradeneeded = function(event){
+        console.log("New/Updated DB")
+        var db = event.target.result;
+        var objStore = db.createObjectStore("feeds", {autoIncrement: true});
+
+        objStore.createIndex("url", "url", {unique: true});
+        objStore.createIndex("title", "title", {unique: true});
+
+        objStore.transaction.oncomplete = function(event) {
+          var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+          app.feeds.forEach(function(feed){
+            if(feed.title !== filter){
+              feedObjStore.add({url: feed.link, title: feed.title})
+            }
+          });
+        }
+      }
+    }
+    app.loadFeeds();
   }
 
   app.loadingIcon = function(){

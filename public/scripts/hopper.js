@@ -136,51 +136,8 @@
 
   // Parse feeds for filters & links, save them to indexdb and add HTML to create the filters
   app.updateFilters = function() {
-    app.filters = [];
-    app.feedUrls = [];
 
-    app.feeds.forEach(function(feed){
-      app.filters.push({
-        title: feed.title,
-        img: undefined
-      });
-      app.feedUrls.push(feed.link);
-    })
-
-    if(!window.indexedDB){
-      console.log("Your browser doesn't support a stable version of IndexDB");
-    } else {
-      var request = window.indexedDB.open("rssFeedLinks", 3);
-
-      request.onerror = function(event){
-        console.log("Error: " + event.target.errorCode);
-      }
-
-      request.onsuccess = function(event){
-        var db = event.target.result;
-        var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
-        objStore.delete(IDBKeyRange.lowerBound(0));
-        app.feeds.forEach(function(feed){
-          objStore.add({url:feed.link, title: feed.title});
-        })
-      }
-
-      request.onupgradeneeded = function(event){
-        console.log("New/Updated DB")
-        var db = event.target.result;
-        var objStore = db.createObjectStore("feeds", {autoIncrement: true});
-
-        objStore.createIndex("url", "url", {unique: true});
-        objStore.createIndex("title", "title", {unique: true});
-
-        objStore.transaction.oncomplete = function(event) {
-          var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
-          app.feeds.forEach(function(feed){
-            feedObjStore.add({url: feed.link, title: feed.title})
-          });
-        }
-      }
-    }
+    app.updateDB();
 
     var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
     app.filters.forEach(function(filter){
@@ -387,6 +344,37 @@
 
   app.deleteFeed = function(filter) {
 
+    var res = app.feeds.filter(function(obj){
+      return obj.title !== filter
+    })
+
+    app.feeds = res.slice();
+
+    app.updateDB();
+
+    // console.log(res)
+    // console.log(app.feeds)
+
+    // console.log(app.feeds.indexOf(res))
+
+    // app.deleteAnimation(filter);
+    // app.loadingIcon();
+    // app.loadFeeds();
+  }
+
+  app.updateDB = function(){
+
+    app.filters = [];
+    app.feedUrls = [];
+
+    app.feeds.forEach(function(feed){
+      app.filters.push({
+        title: feed.title,
+        img: undefined
+      });
+      app.feedUrls.push(feed.link);
+    })
+
     if(!window.indexedDB){
       console.log("Your browser doesn't support a stable version of IndexDB");
     } else {
@@ -401,9 +389,7 @@
         var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
         objStore.delete(IDBKeyRange.lowerBound(0));
         app.feeds.forEach(function(feed){
-          if(feed.title !== filter){
-            objStore.add({url:feed.link, title: feed.title});
-          }
+          objStore.add({url:feed.link, title: feed.title});
         })
       }
 

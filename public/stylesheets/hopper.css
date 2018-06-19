@@ -101,6 +101,10 @@ body {
 .sidebar .filter.new {
   align-items: flex-start;
   width: 30px;
+  height: 30px;
+
+  padding-bottom: 2px;
+
   overflow:hidden;
   transition: width 0.5s;
 }

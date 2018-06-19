@@ -46,6 +46,7 @@ body {
   padding: 40px 10px 0 0;
 
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar .filter {
@@ -421,7 +422,6 @@ body {
   .sidebar {
     z-index: 1;
     flex: 1;
-    min-width: 250px;
     max-width: 450px;
   }
 

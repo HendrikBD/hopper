@@ -59,8 +59,14 @@ self.addEventListener('fetch', function(e){
 
   } else {
     e.respondWith(
-      caches.match(e.request).then(function(response){
-        return response || fetch(e.reqeuest);
+      caches.open(cacheName).then(function(cache){
+        return cache.match(e.request).then(function(response){
+          var fetchPromise = fetch(e.request).then(function(networkResponse){
+            cache.put(e.request, networkResponse.clone());
+            return networkResponse;
+          })
+          return response || fetchPromise
+        })
       })
     )
   }

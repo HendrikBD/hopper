@@ -98,7 +98,7 @@
   app.getFeeds = function(){
     let path = "/rss?url=";
     app.reqUrls.forEach(function(url){
-      path += url;
+      path += encodeURIComponent(url);
       path +=",";
     })
     path = path.slice(0,-1);
@@ -280,7 +280,6 @@
     })
 
     document.querySelector(".newFilter input").addEventListener("keypress", function(e){
-      console.log(e.keyCode)
       if(e.keyCode == 13){
         app.addNewFeed();
       }

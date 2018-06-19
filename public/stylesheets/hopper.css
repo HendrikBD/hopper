@@ -108,16 +108,18 @@ body {
   display: flex;
   opacity: 1;
   transition: opacity 0s 0s;
+  pointer-events: auto;
 }
 
 .sidebar .filter.new .newFilter {
   flex: 1;
 
-  display: none;
+  display: flex;
   align-items: center;
 
   opacity: 0;
   transition: opacity 0s 0.5s;
+  pointer-events: none;
 }
 
 .sidebar .filter.new input{

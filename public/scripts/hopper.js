@@ -309,20 +309,16 @@
 
     document.querySelector(".newRssSubmit").addEventListener("mouseup", function(){
       this.classList.remove("clicked");
-
-      app.reqUrls = app.feedUrls.slice();
-
-      var newFilter = document.querySelector(".newFilter input").value;
-      if(newFilter){
-        app.reqUrls.push(newFilter);
-      }
-      setTimeout(function(){
-        document.querySelector(".newFilter input").value = "";
-      },500);
-      document.querySelector(".filter.new").classList.remove("open");
-      app.loadingIcon();
-      app.getFeeds();
+      app.addNewFeed();
     })
+
+    document.querySelector(".newFilter input").addEventListener("keypress", function(e){
+      console.log(e.keyCode)
+      if(e.keyCode == 13){
+        app.addNewFeed();
+      }
+    })
+
 
     document.querySelector(".newRssSubmit").addEventListener("mouseout", function(){
       this.classList.remove("clicked");
@@ -355,6 +351,21 @@
         app.deleteFeed(this.parentNode.parentNode.childNodes[0].childNodes[1].innerText)
       })
     })
+  }
+
+  app.addNewFeed = function(){
+    app.reqUrls = app.feedUrls.slice();
+
+    var newFilter = document.querySelector(".newFilter input").value;
+    if(newFilter){
+      app.reqUrls.push(newFilter);
+    }
+    setTimeout(function(){
+      document.querySelector(".newFilter input").value = "";
+    },500);
+    document.querySelector(".filter.new").classList.remove("open");
+    app.loadingIcon();
+    app.getFeeds();
   }
 
   app.editFeeds = function(){

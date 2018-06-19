@@ -105,6 +105,7 @@ body {
 }
 
 .sidebar .filter.new.open .newFilter {
+  display: flex;
   opacity: 1;
   transition: opacity 0s 0s;
 }
@@ -112,7 +113,7 @@ body {
 .sidebar .filter.new .newFilter {
   flex: 1;
 
-  display: flex;
+  display: none;
   align-items: center;
 
   opacity: 0;

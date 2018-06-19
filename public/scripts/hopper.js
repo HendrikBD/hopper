@@ -42,6 +42,15 @@
     }
   })
 
+  document.addEventListener("keypress", function(e){
+    if(e.keyCode ==27){
+      document.querySelector(".sidebar .edit").classList.remove("clicked")
+      document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
+        ele.classList.remove("on");
+      })
+    }
+  })
+
 
   // On load, check indexedDB for previously saved rss links, if exist save them
   app.loadFeeds = function(){

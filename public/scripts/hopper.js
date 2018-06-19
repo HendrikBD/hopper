@@ -97,9 +97,14 @@
   // be returned.
   app.getFeeds = function(){
     let path = "/rss?url=";
+    let uniqueUrls = [];
+
     app.reqUrls.forEach(function(url){
-      path += encodeURIComponent(url);
-      path +=",";
+      if(uniqueUrls.indexOf(url)<0){
+        uniqueUrls.push(url)
+        path += encodeURIComponent(url);
+        path +=",";
+      }
     })
     path = path.slice(0,-1);
 

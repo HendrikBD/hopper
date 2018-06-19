@@ -51,6 +51,7 @@ body {
 
 .sidebar .filter {
   margin-bottom: 10px;
+  height: 24px;
 
   display: flex;
   align-items: center;
@@ -58,6 +59,15 @@ body {
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
+}
+
+.sidebar .filter.hide {
+  opacity: 0;
+  margin-bottom: 0px;
+  height: 0px;
+  transition: opacity 0.2s, margin 0.5s, height 0.5s;
+
+  pointer-events: none;
 }
 
 .sidebar .filter .btn {

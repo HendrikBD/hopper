@@ -343,23 +343,22 @@
   }
 
   app.deleteFeed = function(filter) {
-
     var res = app.feeds.filter(function(obj){
       return obj.title !== filter
     })
 
+    document.querySelectorAll(".sidebar .filter").forEach(function(ele){
+      if ((ele.childNodes[0].childNodes[1]) && (ele.childNodes[0].childNodes[1].innerText == filter)){
+        ele.classList.add("hide");
+      }
+    })
+
     app.feeds = res.slice();
-
     app.updateDB();
+    if(filter==app.currentFilter || app.currentFilter=="Home"){
+      app.loadAllFeeds();
+    }
 
-    // console.log(res)
-    // console.log(app.feeds)
-
-    // console.log(app.feeds.indexOf(res))
-
-    // app.deleteAnimation(filter);
-    // app.loadingIcon();
-    // app.loadFeeds();
   }
 
   app.updateDB = function(){
@@ -411,8 +410,6 @@
         }
       }
     }
-    app.loadingIcon();
-    app.loadFeeds();
   }
 
   app.loadingIcon = function(){

@@ -324,6 +324,10 @@
       app.getFeeds();
     })
 
+    document.querySelector(".newRssSubmit").addEventListener("mouseout", function(){
+      this.classList.remove("clicked");
+    })
+
 
     document.querySelectorAll(".filter .btn").forEach(function(element){
       element.addEventListener("click", function(){

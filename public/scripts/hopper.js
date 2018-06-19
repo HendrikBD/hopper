@@ -48,6 +48,7 @@
       document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
         ele.classList.remove("on");
       })
+      document.querySelector(".filter.new").classList.remove("open")
     }
   })
 

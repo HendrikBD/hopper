@@ -110,6 +110,8 @@ body {
 }
 
 .sidebar .filter.new img {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 
@@ -160,9 +162,15 @@ body {
 }
 
 .sidebar .filter img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.sidebar .filter.home img {
   width: 24px;
   height: 24px;
-  margin-right: 10px;
 }
 
 .sidebar .filter .delete > img {

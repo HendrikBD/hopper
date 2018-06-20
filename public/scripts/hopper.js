@@ -248,7 +248,7 @@
     app.feeds.forEach(function(feed){
       feed.items.forEach(function(item){
         item.source = feed.title;
-        app.recentFeeds.push(item)
+        app.recentFeeds.push(item);
       })
     })
     app.recentFeeds.sort(function(a,b){
@@ -261,7 +261,6 @@
   // Prep menu, back and new filter buttons. Menu & back are for narrow screen 
   // sidebar control. New filter button will send to app to get feeds
   app.prepButtons = function(){
-
     document.querySelector(".newRssSubmit").addEventListener("mousedown", function(){
       this.classList.add("clicked");
     })
@@ -349,11 +348,9 @@
     if(filter==app.currentFilter || app.currentFilter=="Home"){
       app.loadAllFeeds();
     }
-
   }
 
   app.updateDB = function(){
-
     app.filters = [];
     app.feedUrls = [];
 
@@ -407,6 +404,7 @@
     document.querySelector(".feed").innerHTML = "<div class='loading'></div>" + document.querySelector(".feed").innerHTML;
   }
 
+  app.prepButtons();
   app.loadingIcon();
   app.loadFeeds();
 

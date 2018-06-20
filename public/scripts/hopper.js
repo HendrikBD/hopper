@@ -146,11 +146,7 @@
 
     var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
     app.filters.forEach(function(filter){
-      if(filter.img){
-        filterHtml += '<div class="filter btn"><img src="'+filter.img+'"><p>'+filter.title+'</p></div>';
-      } else {
-        filterHtml += '<div class="filter"><div class="btn"><img src="img/rssFeed.png"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
-      }
+        filterHtml += '<div class="filter"><div class="btn"><img src="'+filter.imgLink+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
     })
 
     filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
@@ -373,7 +369,7 @@
     app.feeds.forEach(function(feed){
       app.filters.push({
         title: feed.title,
-        img: undefined
+        imgLink: feed.imgLink
       });
       app.feedUrls.push(feed.link);
     })

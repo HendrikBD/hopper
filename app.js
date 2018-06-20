@@ -48,6 +48,10 @@ app.get('/rss', function(req, res){
     .then(function(){
       feedsParsed.forEach(function(feed){
 
+        if(feed.link.slice(-1)=="/"){
+          feed.link = feed.link.slice(0,-1);
+        }
+
         feeds.push({
           title: feed.title,
           items: feed.items.sort(function(a,b){
@@ -55,7 +59,8 @@ app.get('/rss', function(req, res){
             let dateB = new Date(b.pubDate);
             return (dateB-dateA)
           }),
-          link: feed.rssLink
+          link: feed.rssLink,
+          imgLink: "https://www.google.com/s2/favicons?domain=" + feed.link,
         });
       })
 

@@ -279,6 +279,7 @@ body {
 
   border-radius: 4px;
   background: #fff;
+  box-shadow: 0 0 3px #aaa;
 
   cursor: pointer;
 }
@@ -447,6 +448,8 @@ body {
     z-index: 1;
     flex: 1;
     max-width: 450px;
+
+    box-shadow: 1px 0 1px #bbb;
   }
 
 

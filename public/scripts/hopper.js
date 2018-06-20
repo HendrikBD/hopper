@@ -144,19 +144,20 @@
 
   // Parse feeds for filters & links, save them to indexdb and add HTML to create the filters
   app.updateFilters = function() {
-    app.updateDB();
+    app.updateDB().then(function(){
 
-    var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
+      var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
 
-    app.feeds.forEach(function(feed){
+      app.feeds.forEach(function(feed){
         filterHtml += '<div class="filter"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
-    })
+      })
 
-    filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
-    document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
+      filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
+      document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
 
-    document.querySelector(".sidebar .edit").classList.remove("clicked")
-    app.prepButtons();
+      document.querySelector(".sidebar .edit").classList.remove("clicked")
+      app.prepButtons();
+    });
   }
 
   // Activate new filter form
@@ -364,58 +365,66 @@
       app.feedUrls.push(feed.link);
     })
 
-    if(!window.indexedDB){
-      console.log("Your browser doesn't support a stable version of IndexDB");
-    } else {
-      var request = window.indexedDB.open("rssFeedLinks", 3);
+    var promiseDB = new Promise(function(resolve,reject){
+      if(!window.indexedDB){
+        console.log("Your browser doesn't support a stable version of IndexDB");
+        resolve();
+      } else {
+        var request = window.indexedDB.open("rssFeedLinks", 3);
 
-      request.onerror = function(event){
-        console.log("Error: " + event.target.errorCode);
-      }
+        request.onerror = function(event){
+          console.log("Error: " + event.target.errorCode);
+          resolve();
+        }
 
-      request.onsuccess = function(event){
-        var db = event.target.result;
+        request.onsuccess = function(event){
+          var db = event.target.result;
 
-        var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
-        objStore.getAll().onsuccess = function(event){
-          event.target.result.forEach(function(filter){
+          var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+          objStore.getAll().onsuccess = function(event){
+            event.target.result.forEach(function(filter){
 
-            // If no response was received for a previously used feed
-            if(app.feeds.filter(feed => feed.title==filter.title).length<1){
-              app.feeds.push({
-                title: filter.title,
-                items: [],
-                link: filter.url,
-                imgLink: "https://www.google.com/s2/favicons?domain=" + filter.imgLink
-              });
+              // If no response was received for a previously used feed
+              if(app.feeds.filter(feed => feed.title==filter.title).length<1){
+                app.feeds.push({
+                  title: filter.title,
+                  items: [],
+                  link: filter.url,
+                  imgLink: filter.imgLink
+                });
+              };
+
+            })
+
+            objStore.delete(IDBKeyRange.lowerBound(0)).onsuccess = function(){
+              app.feeds.forEach(function(feed){
+                objStore.add({url:feed.link, title: feed.title, imgLink: feed.imgLink});
+              })
             };
-
-          })
-
-          objStore.delete(IDBKeyRange.lowerBound(0));
-          app.feeds.forEach(function(feed){
-            objStore.add({url:feed.link, title: feed.title, imgLink: feed.imgLink});
-          })
+            resolve();
+          }
         }
-      }
 
-      request.onupgradeneeded = function(event){
-        console.log("New/Updated DB")
-        var db = event.target.result;
-        var objStore = db.createObjectStore("feeds", {autoIncrement: true});
+        request.onupgradeneeded = function(event){
+          console.log("New/Updated DB")
+          var db = event.target.result;
+          var objStore = db.createObjectStore("feeds", {autoIncrement: true});
 
-        objStore.createIndex("url", "url", {unique: true});
-        objStore.createIndex("title", "title", {unique: true});
+          objStore.createIndex("url", "url", {unique: true});
+          objStore.createIndex("title", "title", {unique: true});
 
-        objStore.transaction.oncomplete = function(event) {
-          var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+          objStore.transaction.oncomplete = function(event) {
+            var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
 
-          app.feeds.forEach(function(feed){
+            app.feeds.forEach(function(feed){
               feedObjStore.add({url:feed.link, title: feed.title, imgLink: feed.imgLink});
-          });
+            });
+            resolve();
+          }
         }
       }
-    }
+    })
+    return promiseDB;
   }
 
   app.loadingIcon = function(){

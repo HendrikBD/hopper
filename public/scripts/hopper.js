@@ -147,8 +147,9 @@
     app.updateDB();
 
     var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
-    app.filters.forEach(function(filter){
-        filterHtml += '<div class="filter"><div class="btn"><img src="'+filter.imgLink+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
+
+    app.feeds.forEach(function(feed){
+        filterHtml += '<div class="filter"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
     })
 
     filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
@@ -396,7 +397,6 @@
             objStore.add({url:feed.link, title: feed.title, imgLink: feed.imgLink});
           })
         }
-
       }
 
       request.onupgradeneeded = function(event){
@@ -409,10 +409,9 @@
 
         objStore.transaction.oncomplete = function(event) {
           var feedObjStore = db.transaction("feeds", "readwrite").objectStore("feeds");
+
           app.feeds.forEach(function(feed){
-            if(feed.title !== filter){
-              feedObjStore.add({url: feed.link, title: feed.title})
-            }
+              feedObjStore.add({url:feed.link, title: feed.title, imgLink: feed.imgLink});
           });
         }
       }

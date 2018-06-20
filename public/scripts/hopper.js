@@ -89,59 +89,61 @@
       }
       app.getFeeds();
     }
-
   }
 
   // Request feeds from server based on reqUrls property. Server will return the feed 
   // info, but if the request is empty or the urls are bad, an no content response will 
   // be returned.
   app.getFeeds = function(){
-    let path = "/rss?url=";
-    let uniqueUrls = [];
+    if(app.reqUrls.length>0) {
+      let path = "/rss?url=";
+      let uniqueUrls = [];
 
-    app.reqUrls.forEach(function(url){
-      if(uniqueUrls.indexOf(url)<0){
-        uniqueUrls.push(url)
-        path += encodeURIComponent(url);
-        path +=",";
-      }
-    })
-    path = path.slice(0,-1);
-
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function(){
-      if (request.readyState === XMLHttpRequest.DONE) {
-        if(request.status === 200) {
-          var response = JSON.parse(request.response);
-          app.feeds = response;
-          app.updateFilters();
-          app.loadAllFeeds();
-        } else if(request.status === 204) {
-          app.feeds = [];
-          app.prepButtons();
-          app.loadAllFeeds();
-        }
-      } else {
-      }
-    }
-    request.open('GET', path);
-    request.send();
-    request.onerror = function(err){
-      caches.match("/rss").then(function(response){
-        if(response){
-          response.json().then(function(json){
-            app.feeds = json;
-            app.updateFilters();
-            app.loadAllFeeds();
-          })
+      app.reqUrls.forEach(function(url){
+        if(uniqueUrls.indexOf(url)<0){
+          uniqueUrls.push(url)
+          path += encodeURIComponent(url);
+          path +=",";
         }
       })
+      path = path.slice(0,-1);
+
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function(){
+        if (request.readyState === XMLHttpRequest.DONE) {
+          if(request.status === 200) {
+            var response = JSON.parse(request.response);
+            app.feeds = response;
+            app.updateFilters();
+            app.loadAllFeeds();
+          } else if(request.status === 204) {
+            app.feeds = [];
+            app.prepButtons();
+            app.loadAllFeeds();
+          }
+        } else {
+        }
+      }
+      request.open('GET', path);
+      request.send();
+      request.onerror = function(err){
+        caches.match("/rss").then(function(response){
+          if(response){
+            response.json().then(function(json){
+              app.feeds = json;
+              app.updateFilters();
+              app.loadAllFeeds();
+            })
+          }
+        })
+      }
+    } else {
+      document.querySelector(".feed").innerHTML = '';
     }
   }
 
   // Parse feeds for filters & links, save them to indexdb and add HTML to create the filters
   app.updateFilters = function() {
-
     app.updateDB();
 
     var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';

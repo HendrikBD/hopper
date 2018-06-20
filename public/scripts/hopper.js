@@ -175,16 +175,7 @@
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
       document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
-
-      var eleList = document.querySelectorAll(".content .feed .card");
-      eleList[eleList.length-1].addEventListener("click", function(){
-        let win = window.open(item.link, '_blank');
-        if(win){
-          win.focus();
-        } else {
-          console.log("Link blocked, allow popups to view content");
-        }
-      })
+      app.linkCard(item);
     }
 
     app.numLinks=i;
@@ -203,18 +194,9 @@
       for(i=0; i<10 && i<feed[0].items.length; i++){
         let item = feed[0].items[i];
         document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
-
-        var eleList = document.querySelectorAll(".content .feed .card");
-        eleList[eleList.length-1].addEventListener("click", function(){
-          let win = window.open(item.link, '_blank');
-          if(win){
-            win.focus();
-          } else {
-            console.log("Link blocked, allow popups to view content");
-          }
-        })
-
+        app.linkCard(item);
       }
+
       app.numLinks =i;
       app.feedDisplayAnimation()
     }
@@ -228,16 +210,7 @@
       for(i=app.numLinks; i<app.numLinks+10 && i<app.recentFeeds.length; i++){
         let item = app.recentFeeds[i];
         document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
-
-        var eleList = document.querySelectorAll(".content .feed .card");
-        eleList[eleList.length-1].addEventListener("click", function(){
-          let win = window.open(item.link, '_blank');
-          if(win){
-            win.focus();
-          } else {
-            console.log("Link blocked, allow popups to view content");
-          }
-        })
+        app.linkCard(item);
       }
 
       app.numLinks=i;
@@ -250,16 +223,7 @@
         for(i=app.numLinks; i<app.numLinks + 10 && i<feed[0].items.length; i++){
           let item = feed[0].items[i];
         document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
-
-          var eleList = document.querySelectorAll(".content .feed .card");
-          eleList[eleList.length-1].addEventListener("click", function(){
-            let win = window.open(item.link, '_blank');
-            if(win){
-              win.focus();
-            } else {
-              console.log("Link blocked, allow popups to view content");
-            }
-          })
+          app.linkCard(item);
         }
 
         app.numLinks =i;
@@ -458,6 +422,18 @@
     let feedHtml = '<div class="card"><div class="info"><h2>'+ item.title +'</h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>';
 
     return feedHtml;
+  }
+
+  app.linkCard = function(item) {
+    var eleList = document.querySelectorAll(".content .feed .card");
+    eleList[eleList.length-1].addEventListener("click", function(){
+      let win = window.open(item.link, '_blank');
+      if(win){
+        win.focus();
+      } else {
+        console.log("Link blocked, allow popups to view content");
+      }
+    });
   }
 
 })();

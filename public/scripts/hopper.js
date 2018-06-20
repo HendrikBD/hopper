@@ -374,11 +374,29 @@
 
       request.onsuccess = function(event){
         var db = event.target.result;
+
         var objStore = db.transaction("feeds", "readwrite").objectStore("feeds");
-        objStore.delete(IDBKeyRange.lowerBound(0));
-        app.feeds.forEach(function(feed){
-          objStore.add({url:feed.link, title: feed.title});
-        })
+        objStore.getAll().onsuccess = function(event){
+          event.target.result.forEach(function(filter){
+
+            // If no response was received for a previously used feed
+            if(app.feeds.filter(feed => feed.title==filter.title).length<1){
+              app.feeds.push({
+                title: filter.title,
+                items: [],
+                link: filter.url,
+                imgLink: "https://www.google.com/s2/favicons?domain=" + filter.imgLink
+              });
+            };
+
+          })
+
+          objStore.delete(IDBKeyRange.lowerBound(0));
+          app.feeds.forEach(function(feed){
+            objStore.add({url:feed.link, title: feed.title, imgLink: feed.imgLink});
+          })
+        }
+
       }
 
       request.onupgradeneeded = function(event){

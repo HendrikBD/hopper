@@ -202,7 +202,17 @@
 
       for(i=0; i<10 && i<feed[0].items.length; i++){
         let item = feed[0].items[i];
-        document.querySelector(".content .feed").innerHTML += app.cardHtml(item);
+        document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
+
+        var eleList = document.querySelectorAll(".content .feed .card");
+        eleList[eleList.length-1].addEventListener("click", function(){
+          let win = window.open(item.link, '_blank');
+          if(win){
+            win.focus();
+          } else {
+            console.log("Link blocked, allow popups to view content");
+          }
+        })
 
       }
       app.numLinks =i;
@@ -217,7 +227,17 @@
 
       for(i=app.numLinks; i<app.numLinks+10 && i<app.recentFeeds.length; i++){
         let item = app.recentFeeds[i];
-        document.querySelector('.content .feed').innerHTML += app.cardHtml(item);
+        document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
+
+        var eleList = document.querySelectorAll(".content .feed .card");
+        eleList[eleList.length-1].addEventListener("click", function(){
+          let win = window.open(item.link, '_blank');
+          if(win){
+            win.focus();
+          } else {
+            console.log("Link blocked, allow popups to view content");
+          }
+        })
       }
 
       app.numLinks=i;
@@ -229,8 +249,19 @@
 
         for(i=app.numLinks; i<app.numLinks + 10 && i<feed[0].items.length; i++){
           let item = feed[0].items[i];
-          document.querySelector('.content .feed').innerHTML += app.cardHtml(item);
+        document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
+
+          var eleList = document.querySelectorAll(".content .feed .card");
+          eleList[eleList.length-1].addEventListener("click", function(){
+            let win = window.open(item.link, '_blank');
+            if(win){
+              win.focus();
+            } else {
+              console.log("Link blocked, allow popups to view content");
+            }
+          })
         }
+
         app.numLinks =i;
       }
     }

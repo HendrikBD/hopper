@@ -277,19 +277,15 @@ body {
 }
 
 
-.card .previewImg {
-  padding: 6px 15px;
-}
-
 .card .info {
   width: 100%;
-  padding: 0 10px;
+  padding: 0 10px 0 15px;
 }
 
 .card .moreInfo {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 15px 0 10px 0;
 }
 
 .card .moreInfo .comments {

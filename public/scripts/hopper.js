@@ -418,7 +418,7 @@
     let timeNow = new Date();
     let pubTime = new Date(item.pubDate);
 
-    let feedHtml = '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>';
+    let feedHtml = '<div class="card"><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>';
 
     return feedHtml;
   }

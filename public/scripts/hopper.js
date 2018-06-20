@@ -168,16 +168,16 @@
     app.sortRecentFeeds();
     app.currentFilter = "Home";
 
-    var feedHtml = '';
     let i;
+
+    document.querySelector(".feed").innerHTML = '';
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
-      feedHtml += app.cardHtml(item);
+      document.querySelector(".content .feed").innerHTML += app.cardHtml(item);
     }
 
     app.numLinks=i;
-    document.querySelector(".content .feed").innerHTML = feedHtml;
     app.feedDisplayAnimation();
   }
 
@@ -186,16 +186,16 @@
     let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
     let i;
 
+
     if(feed[0]){
-      var feedHtml = '';
+      document.querySelector(".content .feed").innerHTML = "";
 
       for(i=0; i<10 && i<feed[0].items.length; i++){
         let item = feed[0].items[i];
-        feedHtml += app.cardHtml(item);
+        document.querySelector(".content .feed").innerHTML += app.cardHtml(item);
 
       }
       app.numLinks =i;
-      document.querySelector(".content .feed").innerHTML = feedHtml;
       app.feedDisplayAnimation()
     }
   }
@@ -203,29 +203,25 @@
   // Add more feed data to bottom of feed
   app.loadMore = function(){
     if(app.currentFilter=="Home"){
-      var feedHtml = '';
       let i;
 
       for(i=app.numLinks; i<app.numLinks+10 && i<app.recentFeeds.length; i++){
         let item = app.recentFeeds[i];
-        feedHtml += app.cardHtml(item);
+        document.querySelector('.content .feed').innerHTML += app.cardHtml(item);
       }
 
       app.numLinks=i;
-      document.querySelector(".content .feed").innerHTML += feedHtml;
     } else{
       let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
       let i;
 
       if(feed[0]){
-        var feedHtml = '';
 
         for(i=app.numLinks; i<app.numLinks + 10 && i<feed[0].items.length; i++){
           let item = feed[0].items[i];
-          feedHtml += app.cardHtml(item);
+          document.querySelector('.content .feed').innerHTML += app.cardHtml(item);
         }
         app.numLinks =i;
-        document.querySelector(".content .feed").innerHTML += feedHtml;
       }
     }
   }

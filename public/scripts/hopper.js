@@ -174,7 +174,11 @@
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
-      document.querySelector(".content .feed").innerHTML += app.cardHtml(item);
+      document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
+
+      var eleList = document.querySelectorAll(".content .feed .card");
+      eleList[eleList.length-1].addEventListener("click", function(){
+      })
     }
 
     app.numLinks=i;

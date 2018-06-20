@@ -171,10 +171,7 @@
 
     for(i=0; i<10 && i<app.recentFeeds.length; i++){
       let item = app.recentFeeds[i];
-      let timeNow = new Date();
-      let pubTime = new Date(item.pubDate);
-
-      feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+      feedHtml += app.cardHtml(item);
     }
 
     app.numLinks=i;
@@ -192,10 +189,8 @@
 
       for(i=0; i<10 && i<feed[0].items.length; i++){
         let item = feed[0].items[i];
-        let timeNow = new Date();
-        let pubTime = new Date(item.pubDate);
+        feedHtml += app.cardHtml(item);
 
-        feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
       }
       app.numLinks =i;
       document.querySelector(".content .feed").innerHTML = feedHtml;
@@ -211,10 +206,7 @@
 
       for(i=app.numLinks; i<app.numLinks+10 && i<app.recentFeeds.length; i++){
         let item = app.recentFeeds[i];
-        let timeNow = new Date();
-        let pubTime = new Date(item.pubDate);
-
-        feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+        feedHtml += app.cardHtml(item);
       }
 
       app.numLinks=i;
@@ -228,10 +220,7 @@
 
         for(i=app.numLinks; i<app.numLinks + 10 && i<feed[0].items.length; i++){
           let item = feed[0].items[i];
-          let timeNow = new Date();
-          let pubTime = new Date(item.pubDate);
-
-          feedHtml += '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><a href="'+item.link+'" target="#" class="headline"><h2>'+ item.title +'</h2></a><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>'
+          feedHtml += app.cardHtml(item);
         }
         app.numLinks =i;
         document.querySelector(".content .feed").innerHTML += feedHtml;
@@ -423,6 +412,15 @@
     navigator.serviceWorker
     .register("./hopperWorker.js")
     .then(function(){console.log("Service worker registered")})
+  }
+
+  app.cardHtml = function(item) {
+    let timeNow = new Date();
+    let pubTime = new Date(item.pubDate);
+
+    let feedHtml = '<div class="card"><div class="previewImg"><img src=""></div><div class="info"><h2><a href="'+item.link+'" target="#" class="headline">'+ item.title +'</a></h2><div class="moreInfo"><div>'+item.source+'</div><div class="rssSource"><img src="img/rssFeed.png"></div><div class="spacing"></div><div class="timestamp">'+timeDiff(timeNow.valueOf(),pubTime.valueOf())+'</div></div></div></div>';
+
+    return feedHtml;
   }
 
 })();

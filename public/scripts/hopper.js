@@ -473,8 +473,13 @@
   }
 
   app.loadRecommended = function(){
-    console.log("Loading Recommended Feeds");
-
+    let filterHtml = [];
+    for(let i=0; i<app.recommended.length; i++){
+      let filter = app.recommended[i];
+      filterHtml.push('<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
+      if(filterHtml.length>3){break}
+    }
+    document.querySelector(".sidebar .recommended .filters").innerHTML = filterHtml.join("");
   }
 
   app.loadingIcon = function(){

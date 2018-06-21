@@ -478,13 +478,23 @@
   }
 
   app.loadRecommended = function(){
-    let filterHtml = [];
+    let numFilters = 0;
+    document.querySelector(".sidebar .recommended .filters").innerHTML = "";
+
     for(let i=0; i<app.recommended.length; i++){
       let filter = app.recommended[i];
-      filterHtml.push('<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
-      if(filterHtml.length>3){break}
+      let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
+      document.querySelector(".recommended .filters").insertAdjacentHTML('beforeend', filterHtml);
+      // console.log("filt: ", filterHtml)
+
+      numFilters ++;
+      if(numFilters>3){break}
     }
-    document.querySelector(".sidebar .recommended .filters").innerHTML = filterHtml.join("");
+    document.querySelectorAll(".recommended .filters .filter").forEach(function(filter){
+      filter.addEventListener("click", function(){
+        console.log(filter.childNodes[0].childNodes[1].innerText)
+      })
+    })
   }
 
   app.loadingIcon = function(){

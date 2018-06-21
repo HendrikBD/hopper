@@ -9,7 +9,12 @@
     recommended: [
       {title: "Features - Ars Technica", rssUrl: 'http://feeds.arstechnica.com/arstechnica/features', imgUrl: 'https://www.google.com/s2/favicons?domain=arstechnica.com'},
       {title: "Hacker News", rssUrl: 'http://news.ycombinator.com/rss', imgUrl: 'https://www.google.com/s2/favicons?domain=news.ycombinator.com'},
+      {title: "CSS-Tricks", rssUrl: 'https://css-tricks.com/feed/', imgUrl: 'https://www.google.com/s2/favicons?domain=www.css-tricks.com/'},
       {title: "Engadget RSS Feed", rssUrl: 'https://www.engadget.com/rss.xml', imgUrl: 'https://www.google.com/s2/favicons?domain=www.engadget.com/'},
+      {title: "Engadget RSS Feed", rssUrl: 'http://feeds.reuters.com/reuters/AFRICAWorldNews', imgUrl: 'https://www.google.com/s2/favicons?domain=www.reuters.com/'},
+      {title: "LifeHacker", rssUrl: 'https://lifehacker.com/rss', imgUrl: 'https://www.google.com/s2/favicons?domain=www.lifehacker.com/'},
+      {title: "TechCrunch", rssUrl: 'http://feeds.feedburner.com/TechCrunch', imgUrl: 'https://www.google.com/s2/favicons?domain=www.techcrunch.com/'},
+      {title: "Wait But Why", rssUrl: 'https://waitbutwhy.com/feed', imgUrl: 'https://www.google.com/s2/favicons?domain=www.waitbutwhy.com/'},
       {title: "JavaScript", rssUrl: 'https://www.reddit.com/r/javascript/.rss', imgUrl: 'https://www.google.com/s2/favicons?domain=www.reddit.com/'},
     ],
     currentFilter: "Home",

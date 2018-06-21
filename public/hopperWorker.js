@@ -11,7 +11,9 @@ var filesToCache = [
   '/img/rssFeed.png',
   '/img/refresh.png',
   '/img/delete.png',
-  '/img/edit.png'
+  '/img/edit.png',
+  '/img/favicon.png',
+  '/img/hopperIcon.png'
 ];
 
 self.addEventListener('install', function(e){

@@ -489,7 +489,13 @@
 
       let filterList = document.querySelectorAll(".recommended .filters .filter"); 
       filterList[filterList.length-1].addEventListener('click', function(e){
-        console.log(filter.rssUrl);
+        app.reqUrls = app.feedUrls.slice();
+        app.reqUrls.push(filter.rssUrl);
+        document.querySelector(".newFilter input").value = "";
+        document.querySelector(".filter.new").classList.remove("open");
+        app.loadingIcon();
+        app.getFeeds();
+        app.loadRecommended();
       })
 
       numFilters ++;

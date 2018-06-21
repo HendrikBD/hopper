@@ -484,18 +484,19 @@
     for(let i=0; i<app.recommended.length; i++){
       let filter = app.recommended[i];
       let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
+
       document.querySelector(".recommended .filters").insertAdjacentHTML('beforeend', filterHtml);
-      // console.log("filt: ", filterHtml)
+
+      let filterList = document.querySelectorAll(".recommended .filters .filter"); 
+      filterList[filterList.length-1].addEventListener('click', function(e){
+        console.log(filter.rssUrl);
+      })
 
       numFilters ++;
       if(numFilters>3){break}
     }
-    document.querySelectorAll(".recommended .filters .filter").forEach(function(filter){
-      filter.addEventListener("click", function(){
-        console.log(filter.childNodes[0].childNodes[1].innerText)
-      })
-    })
   }
+
 
   app.loadingIcon = function(){
     document.querySelector(".feed").innerHTML = "<div class='loading'></div>" + document.querySelector(".feed").innerHTML;

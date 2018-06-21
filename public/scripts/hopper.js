@@ -308,7 +308,8 @@
     })
 
 
-    document.querySelectorAll(".filter .btn").forEach(function(element){
+    document.querySelectorAll(".sidebar .body>div:nth-child(1) .filter .btn").forEach(function(element){
+
       element.addEventListener("click", function(){
         app.numLinks=0;
         if(app.currentFilter !== this.childNodes[1].innerText){
@@ -329,7 +330,7 @@
       app.newFilterForm();
     })
 
-    document.querySelectorAll(".filter .delete img").forEach(function(ele){
+    document.querySelectorAll(".sidebar .body>div:nth-child(1) .filter .delete img").forEach(function(ele){
       ele.addEventListener("click", function(){
         app.deleteFeed(this.parentNode.parentNode.childNodes[0].childNodes[1].innerText)
       })

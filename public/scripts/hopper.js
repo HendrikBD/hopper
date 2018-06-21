@@ -138,7 +138,7 @@
         })
       }
     } else {
-      document.querySelector(".feed").innerHTML = '';
+      app.loadAllFeeds();
     }
   }
 
@@ -184,11 +184,11 @@
 
     if(i>0){
       app.feedDisplayAnimation()
+    } else if(app.feeds.length>0) {
+      document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>Error fetching feed, no items found.</p></div>";
     } else {
-      document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No items available, refresh or try again later.</p></div>";
-      app.feedDisplayAnimation()
+      document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No feeds to display, add a feed or choose a recommended one.</p></div>";
     }
-    // app.feedDisplayAnimation();
   }
 
   // Load feed data from a single source and display via HTML

@@ -222,6 +222,19 @@ body {
   background: #E1DEDC;
 }
 
+.feed .notification {
+  margin: 10px;
+  padding: 0 10%;
+  border-radius: 4px;
+  background: #eee;
+  box-shadow: 0 0 1px #bbb;
+}
+
+.feed .notification p {
+  padding: 25px;
+  text-align: center;
+}
+
 .loading {
   width: 24px;
   height: 24px;

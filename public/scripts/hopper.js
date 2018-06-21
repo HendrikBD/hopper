@@ -181,7 +181,14 @@
     }
 
     app.numLinks=i;
-    app.feedDisplayAnimation();
+
+    if(i>0){
+      app.feedDisplayAnimation()
+    } else {
+      document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No items available, refresh or try again later.</p></div>";
+      app.feedDisplayAnimation()
+    }
+    // app.feedDisplayAnimation();
   }
 
   // Load feed data from a single source and display via HTML
@@ -198,9 +205,12 @@
         document.querySelector(".content .feed").insertAdjacentHTML('beforeend', app.cardHtml(item))
         app.linkCard(item);
       }
-
       app.numLinks =i;
-      app.feedDisplayAnimation()
+      if(i>0){
+        app.feedDisplayAnimation()
+      } else {
+        document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No items available for this feed, refresh or try again later.</p></div>";
+      }
     }
   }
 

@@ -6,6 +6,12 @@
     feeds: [],
     filters: [],
     recentFeeds: [],
+    recommended: [
+      {rssUrl: 'http://feeds.arstechnica.com/arstechnica/features', imgUrl: 'https://www.google.com/s2/favicons?domain=arstechnica.com'},
+      {rssUrl: 'https://news.ycombinator.com/rss', imgUrl: 'https://www.google.com/s2/favicons?domain=news.ycombinator.com'},
+      {rssUrl: 'https://www.engadget.com/rss.xml', imgUrl: 'https://www.google.com/s2/favicons?domain=www.engadget.com/'},
+      {rssUrl: 'https://www.reddit.com/r/javascript/.rss', imgUrl: 'https://www.google.com/s2/favicons?domain=www.reddit.com/'},
+    ],
     currentFilter: "Home",
     numLinks: 0,
   }
@@ -156,6 +162,8 @@
       document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
 
       document.querySelector(".sidebar .edit").classList.remove("clicked")
+
+      app.loadRecommended();
       app.prepButtons();
     });
   }
@@ -462,6 +470,11 @@
       }
     })
     return promiseDB;
+  }
+
+  app.loadRecommended = function(){
+    console.log("Loading Recommended Feeds");
+
   }
 
   app.loadingIcon = function(){

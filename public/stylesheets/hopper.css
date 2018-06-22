@@ -3,7 +3,7 @@ body {
 }
 
 .navbar {
-  background: #55B572;
+  background: #4CAF50;
   position: absolute;
   top: 0;
   left: 0;
@@ -194,7 +194,7 @@ body {
   width: 20px;
   padding: 4px;
   border-radius: 4px;
-  background: #4B84C4;
+  background: #087E23;
   float: right;
 
   position: relative;
@@ -207,7 +207,7 @@ body {
 }
 
 .sidebar .edit.clicked > img {
-  background: #3B5D86;
+  background: #0E6522;
   box-shadow: 0px 0px 1px #555;
 }
 
@@ -397,7 +397,7 @@ body {
     overflow-x: hidden;
 
     box-shadow: 0px 1px 2px 0px #444;
-    background: #349C54;
+    background: #4CAF50;
   }
 
   .sidebar.open {

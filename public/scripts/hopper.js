@@ -11,7 +11,7 @@
       {title: "Hacker News", rssUrl: 'http://news.ycombinator.com/rss', imgUrl: 'https://www.google.com/s2/favicons?domain=news.ycombinator.com'},
       {title: "CSS-Tricks", rssUrl: 'https://css-tricks.com/feed/', imgUrl: 'https://www.google.com/s2/favicons?domain=www.css-tricks.com/'},
       {title: "Engadget RSS Feed", rssUrl: 'https://www.engadget.com/rss.xml', imgUrl: 'https://www.google.com/s2/favicons?domain=www.engadget.com/'},
-      {title: "Engadget RSS Feed", rssUrl: 'http://feeds.reuters.com/reuters/AFRICAWorldNews', imgUrl: 'https://www.google.com/s2/favicons?domain=www.reuters.com/'},
+      {title: "Reuters: World News", rssUrl: 'http://feeds.reuters.com/reuters/AFRICAWorldNews', imgUrl: 'https://www.google.com/s2/favicons?domain=www.reuters.com/'},
       {title: "LifeHacker", rssUrl: 'https://lifehacker.com/rss', imgUrl: 'https://www.google.com/s2/favicons?domain=www.lifehacker.com/'},
       {title: "TechCrunch", rssUrl: 'http://feeds.feedburner.com/TechCrunch', imgUrl: 'https://www.google.com/s2/favicons?domain=www.techcrunch.com/'},
       {title: "Wait But Why", rssUrl: 'https://waitbutwhy.com/feed', imgUrl: 'https://www.google.com/s2/favicons?domain=www.waitbutwhy.com/'},
@@ -161,7 +161,8 @@
       filtersDOM.innerHTML = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
 
       app.feeds.forEach(function(feed){
-        filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
+        filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter" rssUrl="'+feed.link+'"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
+
         filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
           app.currentFilter = feed.link;
           app.loadFilteredFeed();

@@ -157,16 +157,24 @@
   app.updateFilters = function() {
     app.updateDB().then(function(){
 
-      var filterHtml = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
+      var filtersDOM = document.querySelector(".sidebar .body>.filters");
+      filtersDOM.innerHTML = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
 
       app.feeds.forEach(function(feed){
-        filterHtml += '<div class="filter"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
+        filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
+        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
+          app.currentFilter = feed.link;
+          app.loadFilteredFeed();
+        })
       })
 
-      filterHtml += '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>';
-      document.querySelector(".sidebar .body .filters").innerHTML = filterHtml;
+      filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>');
 
       document.querySelector(".sidebar .edit").classList.remove("clicked")
+
+      document.querySelector(".filter.new img").addEventListener("click", function(){
+        app.newFilterForm();
+      })
 
       app.loadRecommended();
       app.prepButtons();
@@ -206,9 +214,8 @@
 
   // Load feed data from a single source and display via HTML
   app.loadFilteredFeed = function(){
-    let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
+    let feed = app.feeds.filter(function(feed){return feed.link === app.currentFilter})
     let i;
-
 
     if(feed[0]){
       document.querySelector(".content .feed").innerHTML = "";
@@ -307,28 +314,6 @@
       this.classList.remove("clicked");
     })
 
-
-    document.querySelectorAll(".sidebar .body>div:nth-child(1) .filter .btn").forEach(function(element){
-
-      element.addEventListener("click", function(){
-        app.numLinks=0;
-        if(app.currentFilter !== this.childNodes[1].innerText){
-          app.currentFilter = this.childNodes[1].innerText;
-
-          if(app.currentFilter==="Home"){
-            app.loadAllFeeds();
-          } else {
-            app.loadFilteredFeed();
-          }
-        }
-        document.querySelector(".feed").scrollTop = 0;
-        document.querySelector(".sidebar").classList.remove("open");
-      })
-    })
-
-    document.querySelector(".filter.new img").addEventListener("click", function(){
-      app.newFilterForm();
-    })
 
     document.querySelectorAll(".sidebar .body>div:nth-child(1) .filter .delete img").forEach(function(ele){
       ele.addEventListener("click", function(){

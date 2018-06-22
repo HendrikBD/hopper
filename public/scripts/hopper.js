@@ -343,7 +343,7 @@
 
   app.deleteFeed = function(filter) {
     var res = app.feeds.filter(function(obj){
-      return obj.title !== filter
+      return obj.link !== filter
     })
 
     if(!window.indexedDB){
@@ -380,8 +380,8 @@
       }
     }
 
-    document.querySelectorAll(".sidebar .filter").forEach(function(ele){
-      if ((ele.childNodes[0].childNodes[1]) && (ele.childNodes[0].childNodes[1].innerText == filter)){
+    document.querySelectorAll(".sidebar .body>div:nth-child(1) .filter").forEach(function(ele){
+      if ((ele.attributes.rssurl) && (ele.attributes.rssurl.value == filter)){
         ele.classList.add("hide");
       }
     })

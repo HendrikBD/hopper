@@ -159,6 +159,10 @@
 
       var filtersDOM = document.querySelector(".sidebar .body>.filters");
       filtersDOM.innerHTML = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
+        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
+          app.currentFilter = "Home";
+          app.loadAllFeeds();
+        })
 
       app.feeds.forEach(function(feed){
         filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter" rssUrl="'+feed.link+'"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
@@ -232,6 +236,7 @@
       app.numLinks =i;
       if(i>0){
         app.feedDisplayAnimation()
+        document.querySelector(".feed").scrollTop = 0;
       } else {
         document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No items available for this feed, refresh or try again later.</p></div>";
       }

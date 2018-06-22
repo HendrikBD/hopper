@@ -484,22 +484,27 @@
 
     for(let i=0; i<app.recommended.length; i++){
       let filter = app.recommended[i];
-      let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div></div>';
 
-      document.querySelector(".recommended .filters").insertAdjacentHTML('beforeend', filterHtml);
+      if(app.feeds.filter(function(feed){return (feed.link==filter.rssUrl)}).length==0){
 
-      let filterList = document.querySelectorAll(".recommended .filters .filter"); 
-      filterList[filterList.length-1].addEventListener('click', function(e){
-        app.reqUrls = app.feedUrls.slice();
-        app.reqUrls.push(filter.rssUrl);
-        document.querySelector(".newFilter input").value = "";
-        document.querySelector(".filter.new").classList.remove("open");
-        app.loadingIcon();
-        app.getFeeds();
-        app.loadRecommended();
-      })
+        let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div></div>';
 
-      numFilters ++;
+
+        document.querySelector(".recommended .filters").insertAdjacentHTML('beforeend', filterHtml);
+
+        let filterList = document.querySelectorAll(".recommended .filters .filter"); 
+        filterList[filterList.length-1].addEventListener('click', function(e){
+          app.reqUrls = app.feedUrls.slice();
+          app.reqUrls.push(filter.rssUrl);
+          document.querySelector(".newFilter input").value = "";
+          document.querySelector(".filter.new").classList.remove("open");
+          app.loadingIcon();
+          app.getFeeds();
+          app.loadRecommended();
+        })
+        numFilters ++;
+      }
+
       if(numFilters>3){break}
     }
   }

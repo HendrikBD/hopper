@@ -129,7 +129,7 @@
             app.loadAllFeeds();
           } else if(request.status === 204) {
             app.feeds = [];
-            app.prepButtons();
+            app.updateFilters();
             app.loadAllFeeds();
           }
         } else {
@@ -149,6 +149,7 @@
         })
       }
     } else {
+      app.updateFilters();
       app.loadAllFeeds();
     }
   }

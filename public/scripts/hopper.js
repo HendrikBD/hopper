@@ -256,7 +256,7 @@
 
       app.numLinks=i;
     } else{
-      let feed = app.feeds.filter(function(feed){return feed.title === app.currentFilter})
+      let feed = app.feeds.filter(function(feed){return feed.link === app.currentFilter})
       let i;
 
       if(feed[0]){

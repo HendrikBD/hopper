@@ -153,13 +153,14 @@ body {
 
   padding: 4px 6px;
   margin-left: 5px;
-  border: 1px solid #153F21;
-  border-radius: 3px;
+  border: 1px solid #065C1A;
+  border-radius: 5px;
 
   font-size: 85%;
   cursor: pointer;
 
-  background: #55B572;
+  background: #087E23;
+  color: white;
 }
 
 .sidebar .filter img {
@@ -201,7 +202,7 @@ body {
   right: 3vh;
   bottom: 3vh;
 
-  box-shadow: 0px 0px 3px #555;
+  box-shadow: 0px 0px 2px #555;
   transition: 0.1s;
   cursor: pointer;
 }
@@ -346,7 +347,7 @@ body {
 
 /* Utility */
 .newRssSubmit {
-  box-shadow: 0px 1px 1px #666;
+  box-shadow: 0px 0px 2px #666;
 }
 
 .newRssSubmit.clicked {

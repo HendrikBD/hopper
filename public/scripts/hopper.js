@@ -360,7 +360,6 @@
   }
 
   app.deleteFeed = function(filter) {
-
     var res = app.feeds.filter(function(obj){
       return obj.title !== filter
     })

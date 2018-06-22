@@ -1,4 +1,4 @@
-var cacheName = "hopperCache_0.22";
+var cacheName = "hopperCache_0.1.33";
 var dataCacheName = "feedData";
 var filesToCache = [
   '/',
@@ -43,9 +43,9 @@ self.addEventListener('activate', function(e){
 
 
 self.addEventListener('fetch', function(e){
-  var dataUrl = "http://localhost:3000/rss"
+  var dataUrl = "http://localhost:3000/rss";
   var reqUrl = e.request.url.split("?")[0];
-  console.log("[ServiceWorker] Fetching: ", reqUrl);
+  // console.log("[ServiceWorker] Fetching: ", reqUrl);
   if(reqUrl.indexOf(dataUrl) > -1) {
 
     fetch(e.request).then(function(response){

@@ -484,7 +484,7 @@
 
     for(let i=0; i<app.recommended.length; i++){
       let filter = app.recommended[i];
-      let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>';
+      let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div></div>';
 
       document.querySelector(".recommended .filters").insertAdjacentHTML('beforeend', filterHtml);
 

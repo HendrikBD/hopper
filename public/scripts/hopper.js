@@ -167,12 +167,15 @@
           app.currentFilter = feed.link;
           app.loadFilteredFeed();
         })
+
+        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[1].childNodes[0].addEventListener("click", function(){
+          app.deleteFeed(feed.link)
+        })
+
       })
 
       filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter new"><img src="img/plus.png"><div class="newFilter"><div><input type="text" placeholder="RSS URL"></input></div><div class="newRssSubmit">Add</div></div>');
-
       document.querySelector(".sidebar .edit").classList.remove("clicked")
-
       document.querySelector(".filter.new img").addEventListener("click", function(){
         app.newFilterForm();
       })
@@ -313,13 +316,6 @@
 
     document.querySelector(".newRssSubmit").addEventListener("mouseout", function(){
       this.classList.remove("clicked");
-    })
-
-
-    document.querySelectorAll(".sidebar .body>div:nth-child(1) .filter .delete img").forEach(function(ele){
-      ele.addEventListener("click", function(){
-        app.deleteFeed(this.parentNode.parentNode.childNodes[0].childNodes[1].innerText)
-      })
     })
   }
 

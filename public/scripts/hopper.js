@@ -61,7 +61,11 @@
 
   document.addEventListener("keydown", function(e){
     if(e.keyCode ==27){
-      document.querySelector(".sidebar .edit").classList.remove("clicked")
+      document.querySelectorAll(".sidebar .btns .btn").forEach(function(ele){
+        ele.classList.remove("clicked");
+      });
+      document.querySelector(".sidebar .options").classList.remove("recommended");
+
       document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
         ele.classList.remove("on");
       })

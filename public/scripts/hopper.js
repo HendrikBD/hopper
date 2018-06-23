@@ -124,6 +124,7 @@
     if(app.reqUrls.length>0) {
       let path = "/rss?url=";
       let uniqueUrls = [];
+      var newestPub = app.getMostRecent();
 
       app.reqUrls.forEach(function(url){
         if(uniqueUrls.indexOf(url)<0){
@@ -133,6 +134,10 @@
         }
       })
       path = path.slice(0,-1);
+      if(newestPub){
+        path += "&newestPub=";
+        path += String(app.getMostRecent());
+      }
 
       var request = new XMLHttpRequest();
       request.onreadystatechange = function(){

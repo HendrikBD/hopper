@@ -457,6 +457,10 @@ body {
   }
 
   .sidebar .header {
+    height: 110px;
+    width: 80vw;
+    max-width: 500px;
+
     display: flex;
     align-items: center;
     background: #4CAF50;
@@ -493,7 +497,7 @@ body {
   }
 
   .sidebar .header .back > img {
-    height: 6vh;
+    height: 42px;
   }
 
   .sidebar .body {

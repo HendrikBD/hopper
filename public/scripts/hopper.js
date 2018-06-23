@@ -176,6 +176,7 @@
       var filtersDOM = document.querySelector(".sidebar .body>.filters");
       filtersDOM.innerHTML = '<div class="filter home"><div class="btn"><img src="img/home.png"><p>Home</p></div></div>';
         filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
+          document.querySelector(".sidebar").classList.remove("open");
           app.currentFilter = "Home";
           app.loadAllFeeds();
         })
@@ -184,6 +185,7 @@
         filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter" rssUrl="'+feed.link+'"><div class="btn"><img src="'+feed.imgLink+'"><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
 
         filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
+          document.querySelector(".sidebar").classList.remove("open");
           app.currentFilter = feed.link;
           app.loadFilteredFeed();
         })

@@ -205,12 +205,6 @@ body {
   padding: 4px;
   border-radius: 4px;
   background: #087E23;
-  float: right;
-
-  position: relative;
-  right: 3vh;
-  bottom: 3vh;
-
   box-shadow: 0px 0px 2px #555;
   transition: 0.1s;
   cursor: pointer;
@@ -233,6 +227,20 @@ body {
 
 .sidebar .recommended .filters {
   padding: 10px 10px 0 10px;
+}
+
+.sidebar .btns {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.sidebar .btns .horSpacing {
+  flex: 3;
+}
+.sidebar .btns .edit {
+  flex: 1;
+  text-align: center;
 }
 
 

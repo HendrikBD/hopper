@@ -203,12 +203,14 @@ body {
 .sidebar .options {
   padding: 0 15px 0 15px;
   height: 0px;
-  overflow: hidden;
   transition: height 0.5s, padding 0.5s;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .sidebar .options.recommended {
-  height: 20%;
+  height: 25%;
   padding: 15px;
 }
 
@@ -220,7 +222,6 @@ body {
   text-align: center;
   font-size: 150%;
 }
-
 
 .sidebar .edit > img {
   width: 28px;
@@ -254,10 +255,6 @@ body {
   background: #e0920a;
 }
 
-.sidebar .recommended {
-  margin-top: 80px;
-  text-align: center;
-}
 
 .sidebar .recommended h3 {
   font-size: 150%;

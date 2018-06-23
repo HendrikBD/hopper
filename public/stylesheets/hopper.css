@@ -457,7 +457,7 @@ body {
   }
 
   .sidebar .header {
-    height: 110px;
+    height: 130px;
     width: 80vw;
     max-width: 500px;
 
@@ -474,19 +474,19 @@ body {
     display: flex;
     align-items: center;
 
-    padding: 15px 20px 0 20px; 
-    font-size: 5vh;
+    padding: 15px 0 0 3vw;
+    font-size: 260%;
     font-weight: bold;
   }
 
   .sidebar .header .title img {
-    width: 40px;
+    width: 50px;
     margin-right: 10px;
   }
 
   .sidebar .header .desc{
-    padding: 15px 0 0 30px;
-    font-size: 2.5vh;
+    padding: 12px 0 0 8vw;
+    font-size: 110%;
     width: 100%;
   }
 

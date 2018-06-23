@@ -519,8 +519,12 @@
 
   app.getMostRecent = function(){
     app.sortRecentFeeds();
-    var dateNewestPub = new Date(app.recentFeeds[0].pubDate);
-    return dateNewestPub.valueOf()
+    if(app.recentFeeds[0]){
+      var dateNewestPub = new Date(app.recentFeeds[0].pubDate);
+      return dateNewestPub.valueOf()
+    } else {
+      return undefined
+    }
   }
 
 

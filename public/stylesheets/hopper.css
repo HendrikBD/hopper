@@ -238,11 +238,20 @@ body {
 .sidebar .btns .rss img{
   width: 36px;
   border-radius: 4px;
+
+  box-shadow: 0 0 2px #555;
+  background: #ffa507;
 }
 
 .sidebar .edit.clicked > img {
   background: #0E6522;
   box-shadow: 0px 0px 1px #555;
+  transition: 0.5s;
+}
+
+.sidebar .btns .rss.clicked img{
+  box-shadow: 0 0 0 #555;
+  background: #e0920a;
 }
 
 .sidebar .recommended {

@@ -42,6 +42,12 @@
     }, 7000)
   })
 
+  document.querySelectorAll(".btn").forEach(function(ele){
+    ele.addEventListener("click", function(){
+      this.classList.toggle("clicked");
+    })
+  })
+
   document.querySelector(".sidebar .edit > img").addEventListener("click", function(){
     app.editFeeds();
   })
@@ -346,7 +352,6 @@
   }
 
   app.editFeeds = function(){
-    document.querySelector(".sidebar .edit").classList.toggle("clicked")
     document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
       ele.classList.toggle("on");
     })

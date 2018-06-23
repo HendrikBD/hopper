@@ -205,7 +205,6 @@ body {
   height: 0px;
   overflow: hidden;
   transition: height 0.5s, padding 0.5s;
-  /* transition: padding 0.5s; */
 }
 
 .sidebar .options.recommended {
@@ -215,7 +214,11 @@ body {
 
 .sidebar .options.recommended h3 {
   margin: 5px 0 20px 0;
+}
+
+.sidebar .options h3 {
   text-align: center;
+  font-size: 150%;
 }
 
 

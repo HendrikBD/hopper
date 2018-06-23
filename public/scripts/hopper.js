@@ -65,6 +65,7 @@
 
   document.querySelector(".sidebar .btns .rss img").addEventListener("click", function(){
     document.querySelector(".sidebar .options").classList.toggle("recommended");
+    app.loadRecommended();
   })
 
 
@@ -471,7 +472,7 @@
 
   app.loadRecommended = function(){
     let numFilters = 0;
-    document.querySelector(".sidebar .recommended .filters").innerHTML = "";
+    document.querySelector(".sidebar .options").innerHTML = "";
 
     for(let i=0; i<app.recommended.length; i++){
       let filter = app.recommended[i];
@@ -481,9 +482,9 @@
         let filterHtml = '<div class="filter"><div class="btn"><img src="'+ filter.imgUrl+'"><p>'+filter.title+'</p></div></div>';
 
 
-        document.querySelector(".recommended .filters").insertAdjacentHTML('beforeend', filterHtml);
+        document.querySelector(".sidebar .options").insertAdjacentHTML('beforeend', filterHtml);
 
-        let filterList = document.querySelectorAll(".recommended .filters .filter"); 
+        let filterList = document.querySelectorAll(".sidebar .options .filter"); 
         filterList[filterList.length-1].addEventListener('click', function(e){
           app.reqUrls = app.feedUrls.slice();
           app.reqUrls.push(filter.rssUrl);

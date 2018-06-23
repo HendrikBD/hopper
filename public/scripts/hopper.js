@@ -472,7 +472,7 @@
 
   app.loadRecommended = function(){
     let numFilters = 0;
-    document.querySelector(".sidebar .options").innerHTML = "";
+    document.querySelector(".sidebar .options").innerHTML = "<h3>Recommended Feeds</h3>";
 
     for(let i=0; i<app.recommended.length; i++){
       let filter = app.recommended[i];

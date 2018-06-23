@@ -201,18 +201,22 @@ body {
 }
 
 .sidebar .options {
-  padding: 0;
-  height: 0;
+  padding: 0 15px 0 15px;
+  height: 0px;
   overflow: hidden;
-  transition: height 0.5s;
-  transition: padding 0.5s;
+  transition: height 0.5s, padding 0.5s;
+  /* transition: padding 0.5s; */
 }
 
 .sidebar .options.recommended {
-  height: auto;
+  height: 20%;
   padding: 15px;
 }
 
+.sidebar .options.recommended h3 {
+  margin: 5px 0 20px 0;
+  text-align: center;
+}
 
 
 .sidebar .edit > img {

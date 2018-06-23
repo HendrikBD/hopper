@@ -200,6 +200,21 @@ body {
   flex: 1;
 }
 
+.sidebar .options {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s;
+  transition: padding 0.5s;
+}
+
+.sidebar .options.recommended {
+  height: auto;
+  padding: 15px;
+}
+
+
+
 .sidebar .edit > img {
   width: 28px;
   padding: 4px;

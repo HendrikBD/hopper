@@ -63,6 +63,10 @@
     }
   })
 
+  document.querySelector(".sidebar .btns .rss img").addEventListener("click", function(){
+    document.querySelector(".sidebar .options").classList.toggle("recommended");
+  })
+
 
   // On load, check indexedDB for previously saved rss links, if exist save them
   app.loadFeeds = function(){

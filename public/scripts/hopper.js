@@ -512,6 +512,12 @@
     }
   }
 
+  app.getMostRecent = function(){
+    app.sortRecentFeeds();
+    var dateNewestPub = new Date(app.recentFeeds[0].pubDate);
+    return dateNewestPub.valueOf()
+  }
+
 
   app.loadingIcon = function(){
     document.querySelector(".feed").innerHTML = "<div class='loading'></div>" + document.querySelector(".feed").innerHTML;

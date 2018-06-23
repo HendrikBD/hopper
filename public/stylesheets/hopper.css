@@ -222,11 +222,10 @@ body {
   background: #087E23;
   box-shadow: 0px 0px 2px #555;
   transition: 0.1s;
-  cursor: pointer;
 }
 
-.sidebar .btns .rss{
-  /* background: #ffa507; */
+.sidebar .btns img{
+  cursor: pointer;
 }
 
 .sidebar .btns .rss img{

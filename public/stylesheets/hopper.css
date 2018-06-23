@@ -442,14 +442,14 @@ body {
     height: 100%;
     width: 0%;
     max-width: 500px;
-
     transition: width 0.5s;
 
+    display: flex;
+    flex-direction: column;
 
     overflow-x: hidden;
 
     box-shadow: 0px 1px 2px 0px #444;
-    background: #4CAF50;
   }
 
   .sidebar.open {
@@ -457,10 +457,9 @@ body {
   }
 
   .sidebar .header {
-    height: 17%;
-
     display: flex;
     align-items: center;
+    background: #4CAF50;
   }
   
   .sidebar .header > div:nth-child(1) {
@@ -498,7 +497,7 @@ body {
   }
 
   .sidebar .body {
-    height: 83%;
+    flex: 1;
   }
 
   .sidebar .btns {

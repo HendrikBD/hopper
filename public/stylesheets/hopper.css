@@ -441,6 +441,7 @@ body {
     left: 0;
     height: 100%;
     width: 0%;
+    max-width: 500px;
 
     transition: width 0.5s;
 
@@ -453,7 +454,6 @@ body {
 
   .sidebar.open {
     width: 80%;
-    max-width: 500px;
   }
 
   .sidebar .header {

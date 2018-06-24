@@ -19,6 +19,8 @@ app.get('/', function(req, res){
 
 app.get('/rss', function(req, res){
   let urls = req.query.url.split(",");
+  let newestPub = 0;
+
   let feedsParsed = [];
   let feeds = [];
 
@@ -66,9 +68,25 @@ app.get('/rss', function(req, res){
         });
       })
 
-      res.status(200);
-      res.setHeader("Content-Type", "application/json");
-      res.end(JSON.stringify(feeds));
+      if(feedsParsed){
+        feedsParsed.forEach(function(feed){
+          let date = new Date(feed.items[0].pubDate);
+          if(date.valueOf()>newestPub){
+            newestPub = date.valueOf();
+          }
+        })
+      }
+
+      if(!req.query.newestPub || newestPub>req.query.newestPub){
+        console.log("1")
+        res.status(200);
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify(feeds));
+      } else {
+        res.status(200);
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({err: "No new posts!"}));
+      }
     })
     .catch(function(err){
       console.log("Error parsing rss feed: ", err)

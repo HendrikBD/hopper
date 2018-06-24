@@ -247,13 +247,13 @@ body {
   background: #ffa507;
 }
 
-.sidebar .edit.clicked > img {
+.sidebar .edit > img.clicked {
   background: #0E6522;
   box-shadow: 0px 0px 1px #555;
   transition: 0.5s;
 }
 
-.sidebar .btns .rss.clicked img{
+.sidebar .btns .rss .clicked{
   box-shadow: 0 0 0 #555;
   background: #e0920a;
 }
@@ -278,7 +278,7 @@ body {
   flex: 2;
 }
 
-.sidebar .btns .btn {
+.sidebar .btns div {
   flex: 1;
   text-align: center;
 }

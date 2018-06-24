@@ -174,14 +174,24 @@ body {
   position: relative;
 }
 
+.sidebar .filters .feedImg img.rssImg {
+  z-index: 2;
+}
+
 .sidebar .filters .feedImg img {
+  transition: 0.5s;
   position: absolute;
 }
 
-.sidebar .filter .delete > img {
-  width: 18px;
-  height: 18px;
-  margin-left: 7px;
+.sidebar .filters .feedImg.delete img.del {
+  opacity: 1;
+  z-index: 10;
+}
+
+.sidebar .filters .feedImg img.del {
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.5s;
 }
 
 .sidebar .filter p {

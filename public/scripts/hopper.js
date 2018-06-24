@@ -144,9 +144,14 @@
         if (request.readyState === XMLHttpRequest.DONE) {
           if(request.status === 200) {
             var response = JSON.parse(request.response);
-            app.feeds = response;
-            app.updateFilters();
-            app.loadAllFeeds();
+            if(response.err){
+              console.log(response.err);
+              document.querySelector(".loading").classList.add(".hide");
+            } else {
+              app.feeds = response;
+              app.updateFilters();
+              app.loadAllFeeds();
+            }
           } else if(request.status === 204) {
             app.feeds = [];
             app.updateFilters();

@@ -86,22 +86,6 @@ body {
   align-items: center;
 }
 
-.sidebar .delete {
-  height: 18px;
-}
-
-.sidebar .filter .delete img {
-  opacity: 0;
-  cursor: none;
-  pointer-events: none;
-  transition: opacity 0.5s;
-}
-
-.sidebar .filter .delete.on img {
-  cursor: pointer;
-  opacity: 1;
-  pointer-events: auto;
-}
 
 .sidebar .filter.new > div:nth-child(1) {
   width: 24px;

@@ -370,8 +370,8 @@
   }
 
   app.editFeeds = function(){
-    document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
-      ele.classList.toggle("on");
+    document.querySelectorAll(".sidebar .filters .filter .feedImg").forEach(function(ele){
+      ele.classList.toggle("delete");
     })
   }
 

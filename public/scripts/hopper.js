@@ -187,7 +187,7 @@
         })
 
       app.feeds.forEach(function(feed){
-        filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter" rssUrl="'+feed.link+'"><div class="btn"><div class="feedImg"><img src="'+feed.imgLink+'"><img src="img/delete.png" class="del"></div><p>'+feed.title+'</p></div><div class="delete"><img src="img/delete.png"></div></div>')
+        filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter" rssUrl="'+feed.link+'"><div class="btn"><div class="feedImg"><img src="'+feed.imgLink+'" class="rssImg"><img src="img/delete.png" class="del"></div><p>'+feed.title+'</p></div></div>')
 
         filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
           document.querySelector(".sidebar").classList.remove("open");

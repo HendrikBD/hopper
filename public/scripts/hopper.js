@@ -65,7 +65,6 @@
         ele.classList.remove("clicked");
       });
       document.querySelector(".sidebar .options").classList.remove("recommended");
-      document.querySelector(".sidebar .vertSpacing").classList.remove("off");
 
       document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
         ele.classList.remove("on");
@@ -76,7 +75,6 @@
 
   document.querySelector(".sidebar .btns .rss img").addEventListener("click", function(){
     document.querySelector(".sidebar .options").classList.toggle("recommended");
-    document.querySelector(".sidebar .vertSpacing").classList.toggle("off");
     app.loadRecommended();
   })
 

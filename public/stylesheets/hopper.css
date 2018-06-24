@@ -198,19 +198,25 @@ body {
 
 .sidebar .vertSpacing {
   flex: 1;
+  transition: 0.5s;
+}
+
+.sidebar .vertSpacing.off{
+  flex: 0;
 }
 
 .sidebar .options {
   padding: 0 15px 0 15px;
   height: 0px;
-  transition: height 0.5s, padding 0.5s;
+  /* transition: height 0.5s, padding 0.5s; */
+  transition: flex 0.5s;
 
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 .sidebar .options.recommended {
-  height: 25%;
+  flex: 1;
   padding: 15px;
 }
 

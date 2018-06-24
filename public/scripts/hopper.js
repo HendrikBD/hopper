@@ -66,8 +66,8 @@
       });
       document.querySelector(".sidebar .options").classList.remove("recommended");
 
-      document.querySelectorAll(".sidebar .filter .delete").forEach(function(ele){
-        ele.classList.remove("on");
+      document.querySelectorAll(".sidebar .filters .filter .feedImg").forEach(function(ele){
+        ele.classList.remove("delete");
       })
       document.querySelector(".filter.new").classList.remove("open")
     }

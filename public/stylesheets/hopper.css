@@ -183,6 +183,17 @@ body {
   height: 24px;
 }
 
+.sidebar .filters .feedImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  position: relative;
+}
+
+.sidebar .filters .feedImg img {
+  position: absolute;
+}
+
 .sidebar .filter .delete > img {
   width: 18px;
   height: 18px;

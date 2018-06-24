@@ -202,15 +202,6 @@ body {
   flex-direction: column-reverse;
 }
 
-.sidebar .vertSpacing {
-  flex: 1;
-  transition: 0.5s;
-}
-
-.sidebar .vertSpacing.off{
-  flex: 0;
-}
-
 .sidebar .options {
   padding: 0 15px 0 15px;
   height: 0px;

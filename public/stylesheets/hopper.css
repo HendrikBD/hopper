@@ -196,6 +196,12 @@ body {
   white-space: nowrap;
 }
 
+.sidebar .optSpace {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .sidebar .vertSpacing {
   flex: 1;
   transition: 0.5s;
@@ -208,7 +214,7 @@ body {
 .sidebar .options {
   padding: 0 15px 0 15px;
   height: 0px;
-  /* transition: height 0.5s, padding 0.5s; */
+  max-height: 200px;
   transition: flex 0.5s;
 
   overflow-x: hidden;

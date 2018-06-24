@@ -189,13 +189,20 @@
       app.feeds.forEach(function(feed){
         filtersDOM.insertAdjacentHTML('beforeend', '<div class="filter" rssUrl="'+feed.link+'"><div class="btn"><div class="feedImg"><img src="'+feed.imgLink+'" class="rssImg"><img src="img/delete.png" class="del"></div><p>'+feed.title+'</p></div></div>')
 
-        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].addEventListener("click", function(){
+        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].childNodes[0].childNodes[0].addEventListener("click", function(){
           document.querySelector(".sidebar").classList.remove("open");
           app.currentFilter = feed.link;
           app.loadFilteredFeed();
         })
 
-        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[1].childNodes[0].addEventListener("click", function(){
+        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].childNodes[1].addEventListener("click", function(){
+          document.querySelector(".sidebar").classList.remove("open");
+          app.currentFilter = feed.link;
+          app.loadFilteredFeed();
+        })
+
+        console.log(filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].childNodes[0].childNodes[1])
+        filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].childNodes[0].childNodes[1].addEventListener("click", function(){
           app.deleteFeed(feed.link)
         })
 

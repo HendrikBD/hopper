@@ -74,8 +74,8 @@ app.get('/rss', function(req, res){
       console.log("Error parsing rss feed: ", err)
       res.status(204).end();
     });
-
 })
+
 
 app.listen(3000, function(){
   console.log("Server started");

@@ -201,7 +201,6 @@
           app.loadFilteredFeed();
         })
 
-        console.log(filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].childNodes[0].childNodes[1])
         filtersDOM.childNodes[filtersDOM.childNodes.length-1].childNodes[0].childNodes[0].childNodes[1].addEventListener("click", function(){
           app.deleteFeed(feed.link)
         })

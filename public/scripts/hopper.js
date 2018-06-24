@@ -53,7 +53,7 @@
   })
 
 
-  document.querySelector(".content > .feed").addEventListener("scroll", function(){
+  document.querySelector(".content .main .feed").addEventListener("scroll", function(){
     if((this.scrollTop+this.offsetHeight)>=this.scrollHeight){
       app.loadMore();
     }

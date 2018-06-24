@@ -291,7 +291,7 @@ body {
 
 /* Feed */
 
-.feed {
+.main {
   overflow-y: auto;
   background: #E1DEDC;
 }
@@ -514,7 +514,7 @@ body {
     max-width: 500px;
   }
 
-  .feed {
+  .main {
     position: absolute;
     top: 80px;
     bottom: 0;
@@ -567,7 +567,7 @@ body {
     height: 100%;
   }
 
-  .feed {
+  .main {
     flex: 4;
   }
 

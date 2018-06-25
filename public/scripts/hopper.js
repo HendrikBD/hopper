@@ -95,7 +95,7 @@
         })
         app.feedUrls = app.reqUrls.slice();
 
-        app.getFeeds(true);
+        app.getFeeds(true, true);
       }
 
     }
@@ -113,7 +113,7 @@
           feedObjStore.add({url: feed.link, title: feed.title})
         });
       }
-      app.getFeeds();
+      app.getFeeds(true, true);
     }
   }
 
@@ -164,6 +164,7 @@
             } else {
               console.log("There may be a problem, response: ", response);
             }
+
           } else if(request.status === 204) {
             app.feeds = [];
             app.updateFilters();
@@ -190,6 +191,7 @@
       app.loadAllFeeds();
     }
   }
+
 
   // Parse feeds for filters & links, save them to indexdb and add HTML to create the filters
   app.updateFilters = function() {
@@ -380,7 +382,7 @@
     setTimeout(function(){document.querySelector(".newFilter input").value = ""}, 500);
     document.querySelector(".filter.new").classList.remove("open");
     app.loadingIcon();
-    app.getFeeds(false);
+    app.getFeeds(false, true);
   }
 
   app.editFeeds = function(){
@@ -528,7 +530,7 @@
           document.querySelector(".newFilter input").value = "";
           document.querySelector(".filter.new").classList.remove("open");
           app.loadingIcon();
-          app.getFeeds(false);
+          app.getFeeds(false, true);
           app.loadRecommended();
         })
         numFilters ++;

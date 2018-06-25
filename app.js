@@ -26,25 +26,23 @@ app.get('/rss', function(req, res){
 
   let urlParse = urls.map(function(url){
     return new Promise(function(resolve, reject){
-      if(url!=="ahttp://thedickshow.libsyn.com/thedickshow"){
-        request(url, function(err, response, body) {
-          (async () => {
-            if(body) {
-              let feed = await parser.parseString(body);
-              feed.rssLink = url;
+      request(url, function(err, response, body) {
+        (async () => {
+          if(body) {
+            let feed = await parser.parseString(body);
+            feed.rssLink = url;
 
-              feedsParsed.push(feed);
-              resolve();
-            } else {
-              reject("Invalid feed url")
-            }
-          })().catch(function(err){
-            console.log("Error during http request: " + err)
-            console.log("Skipping url: ", url);
+            feedsParsed.push(feed);
             resolve();
-          })
+          } else {
+            reject("Invalid feed url")
+          }
+        })().catch(function(err){
+          console.log("Error during http request: " + err)
+          console.log("Skipping url: ", url);
+          resolve();
         })
-      } else {resolve();}
+      })
     })
   })
 

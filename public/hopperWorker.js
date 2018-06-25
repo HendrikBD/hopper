@@ -1,4 +1,4 @@
-var cacheName = "hopperCache_0.1.48";
+var cacheName = "hopperCache_0.2.00";
 var dataCacheName = "feedData";
 var filesToCache = [
   '/',
@@ -6,14 +6,16 @@ var filesToCache = [
   '/scripts/hopper.js',
   '/stylesheets/hopper.css',
   '/img/backArrow.svg',
-  '/img/home.png',
-  '/img/plus.png',
-  '/img/rssFeed.png',
-  '/img/refresh.png',
   '/img/delete.png',
   '/img/edit.png',
   '/img/favicon.png',
-  '/img/hopperIcon.png'
+  '/img/home.png',
+  '/img/hopperIcon.png',
+  '/img/new.png',
+  '/img/plus.png',
+  '/img/refresh.png',
+  '/img/rss.png',
+  '/img/rssFeed.png',
 ];
 
 self.addEventListener('install', function(e){

@@ -53,7 +53,7 @@
   })
 
 
-  document.querySelector(".content .main .feed").addEventListener("scroll", function(){
+  document.querySelector(".content .main").addEventListener("scroll", function(){
     if((this.scrollTop+this.offsetHeight)>=this.scrollHeight){
       app.loadMore();
     }
@@ -564,7 +564,9 @@
     document.querySelector(".msg .loading").classList.remove("hide");
     setTimeout(function(){
       document.querySelector(".msg .loading").classList.add("hide");
-    }, 10000)
+    }, 30000)
+  };
+
   app.prepFeedCheck = function(){
     if(!app.periodicCheck){
       app.periodicCheck = setInterval(function(){

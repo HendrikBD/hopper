@@ -95,7 +95,7 @@
         })
         app.feedUrls = app.reqUrls.slice();
 
-        app.getFeeds();
+        app.getFeeds(true);
       }
 
     }
@@ -120,7 +120,7 @@
   // Request feeds from server based on reqUrls property. Server will return the feed 
   // info, but if the request is empty or the urls are bad, an no content response will 
   // be returned.
-  app.getFeeds = function(){
+  app.getFeeds = function(checkPubTime){
     if(app.reqUrls.length>0) {
       let path = "/rss?url=";
       let uniqueUrls = [];
@@ -134,7 +134,7 @@
         }
       })
       path = path.slice(0,-1);
-      if(newestPub){
+      if(newestPub && checkPubTime){
         path += "&newestPub=";
         path += String(app.getMostRecent());
       }
@@ -362,15 +362,11 @@
     app.reqUrls = app.feedUrls.slice();
 
     var newFilter = document.querySelector(".newFilter input").value;
-    if(newFilter){
-      app.reqUrls.push(newFilter);
-    }
-    setTimeout(function(){
-      document.querySelector(".newFilter input").value = "";
-    },500);
+    if(newFilter){app.reqUrls.push(newFilter)}
+    setTimeout(function(){document.querySelector(".newFilter input").value = ""}, 500);
     document.querySelector(".filter.new").classList.remove("open");
     app.loadingIcon();
-    app.getFeeds();
+    app.getFeeds(false);
   }
 
   app.editFeeds = function(){
@@ -518,7 +514,7 @@
           document.querySelector(".newFilter input").value = "";
           document.querySelector(".filter.new").classList.remove("open");
           app.loadingIcon();
-          app.getFeeds();
+          app.getFeeds(false);
           app.loadRecommended();
         })
         numFilters ++;

@@ -556,16 +556,19 @@
     setTimeout(function(){
       document.querySelector(".msg .loading").classList.add("hide");
     }, 10000)
+  app.prepFeedCheck = function(){
+    if(!app.periodicCheck){
+      app.periodicCheck = setInterval(function(){
+        console.log("Checking for new feed data");
+        app.getFeeds(true, false);
+      }, 120000);
+    }
   }
 
   app.prepButtons();
   app.loadingIcon();
   app.loadFeeds();
-
-  var contentCheck = setInterval(function(){
-    console.log("Checking for new content");
-    app.getFeeds(true, false);
-  }, 120000);
+  app.prepFeedCheck();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker

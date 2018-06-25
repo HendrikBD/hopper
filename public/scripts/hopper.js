@@ -156,7 +156,16 @@
               app.feeds = response.feeds;
               app.updateFilters();
               app.loadAllFeeds();
+
+              app.prepFeedCheck()
+              document.querySelector(".refresh img:nth-child(2)").classList.remove("on");
+
             } else if(response.newPub){
+
+              clearInterval(app.periodicCheck)
+              app.periodicCheck = undefined;
+
+              document.querySelector(".refresh img:nth-child(2)").classList.add("on");
               console.log("Newely published links!")
               document.querySelector(".loading").classList.add(".hide");
             } else if(response.newPub===false){

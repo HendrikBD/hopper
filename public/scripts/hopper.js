@@ -120,7 +120,7 @@
   // Request feeds from server based on reqUrls property. Server will return the feed 
   // info, but if the request is empty or the urls are bad, an no content response will 
   // be returned.
-  app.getFeeds = function(checkPubTime){
+  app.getFeeds = function(checkPubTime, returnFeeds){
     if(app.reqUrls.length>0) {
       let path = "/rss?url=";
       let uniqueUrls = [];
@@ -133,10 +133,18 @@
           path +=",";
         }
       })
+
       path = path.slice(0,-1);
       if(newestPub && checkPubTime){
         path += "&newestPub=";
         path += String(app.getMostRecent());
+      }
+
+      path += "&returnFeeds=";
+      if(returnFeeds){
+        path += "true";
+      } else {
+        path += "false";
       }
 
       var request = new XMLHttpRequest();
@@ -144,13 +152,17 @@
         if (request.readyState === XMLHttpRequest.DONE) {
           if(request.status === 200) {
             var response = JSON.parse(request.response);
-            if(response.err){
-              console.log(response.err);
-              document.querySelector(".loading").classList.add(".hide");
-            } else {
-              app.feeds = response;
+            if(response.feeds){
+              app.feeds = response.feeds;
               app.updateFilters();
               app.loadAllFeeds();
+            } else if(response.newPub){
+              console.log("Newely published links!")
+              document.querySelector(".loading").classList.add(".hide");
+            } else if(response.newPub===false){
+              console.log("Nothing new")
+            } else {
+              console.log("There may be a problem, response: ", response);
             }
           } else if(request.status === 204) {
             app.feeds = [];

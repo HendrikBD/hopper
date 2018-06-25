@@ -25,14 +25,25 @@ body {
 }
 
 .refresh {
+  width: 35px;
+  height: 35px;
+  position: relative;
+
   margin-right: 30px;
   cursor: pointer;
 }
 
-.refresh > img {
+.refresh > img:nth-child(1) {
   width: 35px;
+  position: absolute;
 }
 
+.refresh > img:nth-child(2) {
+  width: 10px;
+  top: 5%;
+  right: 5%;
+  position: absolute;
+}
 
 /* Sidebar */
 

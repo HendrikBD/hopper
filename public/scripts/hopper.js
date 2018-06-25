@@ -252,6 +252,7 @@
     } else {
       document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No feeds to display, add a feed or choose a recommended one.</p></div>";
     }
+    document.querySelector(".msg .loading").classList.add("hide");
   }
 
   // Load feed data from a single source and display via HTML
@@ -275,6 +276,7 @@
         document.querySelector(".content .feed").innerHTML = "<div class='notification'><p>No items available for this feed, refresh or try again later.</p></div>";
       }
     }
+    document.querySelector(".msg .loading").classList.add("hide");
   }
 
   // Add more feed data to bottom of feed
@@ -536,12 +538,16 @@
 
 
   app.loadingIcon = function(){
-    document.querySelector(".feed").innerHTML = "<div class='loading'></div>" + document.querySelector(".feed").innerHTML;
+    document.querySelector(".msg .loading").classList.remove("hide");
+    setTimeout(function(){
+      document.querySelector(".msg .loading").classList.add("hide");
+    }, 10000)
   }
 
   app.prepButtons();
   app.loadingIcon();
   app.loadFeeds();
+
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker

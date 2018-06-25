@@ -562,6 +562,10 @@
   app.loadingIcon();
   app.loadFeeds();
 
+  var contentCheck = setInterval(function(){
+    console.log("Checking for new content");
+    app.getFeeds(true, false);
+  }, 120000);
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker

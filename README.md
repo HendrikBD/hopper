@@ -1,33 +1,12 @@
 Hopper
 =======
 
-Hopper is intended to be a web app to aggregate various new sources. This will inlcude rss feeds as well some sites that are worthwhile.
+Hopper is an RSS feed reader used to aggregate various sources of information from throughout the web. Hopper is developed as a web app and uses nodeJS as a backend. 
+
+Hopper is designed as a Progressive Web App, as defined by Google. This is an app that loads quickly, caches itself, can be downloaded as an app and works for every screen size. This entails loading the app shell first, and using JavaScript AJAX functions to load the RSS feed.
 
 
-# Outilne
+Future Improvements
+==================
 
-- RSS reader
-    - Keep it simple, no back end (for now). Save rss feeds via cache and pull new data each time I go to the page
-    - b/c it's cached, I don't have to worry about accounts
-  
-- Sorting based on feed source
-- Searching?
-- Options?
-
-
-  Information Architecture
-    - Navbar
-      - Hamburger (for on narrow, for menu)
-      - refresh?
-    - menu
-      - RSS sources
-      - Add new source
-      - Settings
-      - refresh?
-    - feeds
-      - Image
-      - headline (w/ link)
-      - comments
-      - date/time/poster
-      - source
-      - refresh?
+This is intended as a personal project to provide a RSS reader that I could use, as well as a means to improve my development skills. In it's current state, it serves all the basic requirements, but I intend to fix any issues that I find.
